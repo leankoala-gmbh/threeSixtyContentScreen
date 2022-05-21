@@ -3,7 +3,7 @@ name: Publish ThreeSixtyContentScreen
 on:
   push:
     branches:
-      - main
+      - gandalf
 jobs:
   build:
     runs-on: ubuntu-latest
