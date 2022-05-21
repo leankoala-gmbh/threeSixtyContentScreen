@@ -1,0 +1,16 @@
+/src/
+/public/
+/.idea/
+/tests/
+.editorconfig
+.eslint.rc
+.gitignore
+package.json
+package-lock.json
+jest.config.js
+tsconfig.json
+tsconfig.release.json
+vite.config.ts
+webpack.config.js
+tailwind.config.js
+postcss.config.js

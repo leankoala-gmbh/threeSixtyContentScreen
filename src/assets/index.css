@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.contentScreenWrapper {
+  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.screenOverlay {
+  width: 100%;
+  z-index: 55;
+  opacity: 0;
+  transform: translateX(100%);
+
+  &--open {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+.cardSlideRight-enter-active,
+.cardSlideRight-leave-enter {
+  transform: translateX(0);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.cardSlideRight-enter,
+.cardSlideRight-leave-to {
+  transform: translateX(120%);
+}
+.mobileFullHeight {
+  height: calc(100vh - 2rem);
+}
+.outerFullHeight {
+  @apply m-4;
+}
+@supports (-webkit-touch-callout: none) {
+  .mobileFullHeight {
+    height: -webkit-fill-available;
+  }
+  .outerFullHeight {
+    margin: 0;
+  }
+}
+
+.guideScreen {
+  width: calc(100% - 2rem);
+  @media screen and (min-width: 769px) {
+    width: calc(100% - 400px);
+  }
+  @media screen and (min-width: 878px) {
+    width: 560px;
+  }
+}
+
+.guideContent {
+  @apply flow-root;
+  h1, h2, h3 {
+    @apply font-medium mb-2;
+  }
+  h1, h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+  p, li {
+    @apply leading-relaxed font-light;
+  }
+  p {
+    @apply mb-4 text-lg leading-7;
+    & + h2,
+    & + h3 {
+      @apply mt-8;
+    }
+  }
+
+
+  strong {
+    @apply font-medium;
+  }
+
+  ul {
+    @apply list-disc;
+    @apply ml-4 mb-6 mt-6 text-lg leading-7;
+    li {
+      @apply ml-4;
+
+    }
+  }
+
+  a {
+    @apply underline;
+    &:hover {
+      @apply no-underline;
+    }
+  }
+
+  .magazineCta a {
+    @apply no-underline;
+  }
+
+
+  .nuxt-content-highlight {
+    @apply mb-6;
+  }
+
+  .lazyimage {
+    @apply mb-6 border border-gray-200 md:px-4 md:pt-4;
+    &.leftFloat {
+      @apply md:w-1/2 md:float-left md:mr-4
+    }
+    &.rightFloat {
+      @apply md:w-1/2 md:float-right md:ml-4;
+    }
+  }
+
+  table {
+    @apply w-full mb-6 border border-gray-100;
+  }
+
+  thead {
+    @apply bg-gray-200;
+    th {
+      @apply text-left px-1 py-2;
+    }
+  }
+
+  tbody {
+    tr {
+      @apply border-b border-gray-200;
+    }
+    td {
+      @apply p-1;
+    }
+  }
+}
