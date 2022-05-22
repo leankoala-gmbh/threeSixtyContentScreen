@@ -22,6 +22,7 @@
                 v-if="type === 'marketing'"
                 :title="title"
               />
+              <div v-if="type === 'content'" />
               <div
                 class="text-gray-500 hover:text-gray-500 transition duration-300 cursor-pointer"
                 @click="closeScreen"
@@ -97,7 +98,7 @@ const closeScreen = () => {
 window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   contentId.value = payload.contentId
   language.value = payload.language || 'en'
-  type.value = payload.type
+  type.value = payload.type || 'advisor'
   title.value = payload.title?.length ? payload.title : undefined
   openScreen()
 })

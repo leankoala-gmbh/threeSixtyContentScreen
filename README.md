@@ -67,9 +67,8 @@ window.mitt.emit('tsxContentScreenConfig', {
 Currently no findings.
 
 ## Colors
-The component's colors are declared via CSSVars and can thus be adjusted externally.
+The colors are defined using CSSVars and must be included either inline or in the custom stylesheet.
 
-It is therefore necessary to declare the following CSS variables:
 
 ```css
 :root {
@@ -81,3 +80,4 @@ It is therefore necessary to declare the following CSS variables:
   --tsxScreenText: #374253;
   --tsxScreenHeadline: #111729;
 }
+```
