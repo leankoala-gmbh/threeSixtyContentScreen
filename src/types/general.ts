@@ -1,5 +1,6 @@
 export interface IContentConfig {
   contentId: string
   language?: string
-  type?: 'advisor' | 'marketing' | 'content'
+  type?: 'advisor' | 'marketing' | 'content' | undefined
+  title?: string
 }

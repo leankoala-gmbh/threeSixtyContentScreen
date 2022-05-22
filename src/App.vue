@@ -1,18 +1,25 @@
 <template>
   <div>
-    <AdvisorTrigger guide-id="blubb">
-      open trigger
-    </AdvisorTrigger>
-    <AdvisorTrigger>broken trigger</AdvisorTrigger>
-    <Advisor />
+    <div class="mb-10">
+      <TSXContentScreenTrigger
+        content-id="html.deadlink.404"
+      >
+        Open Advisor
+      </TSXContentScreenTrigger>
+    </div>
+    <div>
+      <TSXContentScreenTrigger
+        content-id="_demo.md.elements"
+        type="marketing"
+      >
+        Open Marketing info
+      </TSXContentScreenTrigger>
+    </div>
+    <TSXContentScreen />
   </div>
 </template>
 
-<script>
-import Advisor from '@/components/feature/Advisor/Advisor.ce.vue'
-import AdvisorTrigger from '@/components/feature/AdvisorTrigger/AdvisorTrigger.ce.vue'
-
-export default {
-  components: {AdvisorTrigger, Advisor }
-}
+<script lang="ts" setup>
+import TSXContentScreenTrigger from './components/feature/TSXContentScreenTrigger/TSXContentScreenTrigger.ce.vue'
+import TSXContentScreen from './components/feature/TSXContentScreen/TSXContentScreen.ce.vue'
 </script>

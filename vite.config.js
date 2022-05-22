@@ -12,27 +12,28 @@ export default defineConfig({
   plugins: [
     vue({
       script: {
-        refSugar: true,
-      },
-    }),
+        refSugar: true
+      }
+    })
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '~': path.resolve(__dirname, './src'),
-    },
+      '~': path.resolve(__dirname, './src')
+    }
   },
   build: {
     cssCodeSplit: false,
     rollupOptions: {
       output: {
+        format: 'cjs',
         entryFileNames: 'threeSixtyContentScreen.js',
         chunkFileNames: 'threeSixtyContentScreen-[name].js',
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name == 'style.css')
-            return 'colors.css';
-          return assetInfo.name;
-        },
+          if (assetInfo.name === 'style.css')
+            return 'threeSixtyContentScreen.css'
+          return assetInfo.name
+        }
       }
     }
   }

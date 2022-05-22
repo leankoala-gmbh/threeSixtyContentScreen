@@ -1,5 +1,9 @@
 :root {
-  --primaryColorRegular: #52bce5;
-  --primaryColor400: #68caef;
-  --primaryColor500: #3397be;
+  --tsxScreenPrimary: #52bce5;
+  --tsxScreenPrimaryHover: #68caef;
+  --tsxScreenMarketing: #E77B35;
+  --tsxScreenMarketingHover: #e16b1f;
+  --tsxScreenBackground: #ffffff;
+  --tsxScreenText: #374253;
+  --tsxScreenHeadline: #111729;
 }

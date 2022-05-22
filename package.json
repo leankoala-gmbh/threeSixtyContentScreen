@@ -25,10 +25,10 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.3.1",
+    "@webpros/koality-guide-client": "^1.1.5",
     "marked": "^4.0.15",
     "mitt": "^3.0.0",
-    "vue": "^3.2.33",
-    "@webpros/koality-guide-client": "^1.1.5"
+    "vue": "^3.2.33"
   },
   "devDependencies": {
     "@types/marked": "^4.0.3",

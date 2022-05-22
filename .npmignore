@@ -11,6 +11,7 @@ jest.config.js
 tsconfig.json
 tsconfig.release.json
 vite.config.ts
+vite.config.js
 webpack.config.js
 tailwind.config.js
 postcss.config.js

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center mb-6">
+  <div class="flex items-center">
     <div class="w-20">
       <svg
         id="Layer_1"
@@ -56,6 +56,18 @@
         gradientTransform="matrix(1 0 0 -1 0 402)"
       ><stop offset="0" stop-color="#722378" /><stop offset="1" stop-color="#df4050" /></linearGradient><path d="M143.9 192.2c-3.8-3.2-8.1-5.4-12.8-6.7-2.9-.8-5.9-1.3-8.9-1.5l30.2-48.5h-71v20h39.7l-28.7 44.6-.4.6 1.6 1.2.4-.1c2.1-.8 4.5-1.4 7.1-2 2.6-.5 5.8-.8 9.4-.8 7.5 0 13.5 2.1 17.9 6.3 4.4 4.2 6.6 10 6.6 17.3 0 5.6-1.2 10.4-3.6 14.5-2.4 4.1-5.6 7.2-9.6 9.4s-8.4 3.3-13.2 3.3c-4.6 0-9.2-1.2-13.5-3.5-4.3-2.3-7.7-5-10.1-8l-.6-.8L73.6 255l.4.4c4.2 4.3 9.5 7.8 15.9 10.4s12.9 3.9 19.3 3.9c8.6 0 16.5-1.9 23.6-5.6 7.1-3.7 12.8-9 17.1-15.9s6.5-15.1 6.5-24.5c0-7.5-1.1-13.9-3.4-19s-5.3-9.4-9.1-12.5z" fill="url(#SVGID_5_)" /></svg>
     </div>
-    <span class="font-medium text-2xl pl-4">Advisor</span>
+    <span class="font-medium text-2xl pl-4">{{ title }}</span>
   </div>
 </template>
+
+<script lang="ts">
+export default {
+  name: 'TSXHeaderAdvisor',
+  props: {
+    title: {
+      type: String,
+      default: 'Advisor'
+    }
+  }
+}
+</script>

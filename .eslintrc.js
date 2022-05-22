@@ -9,7 +9,7 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
     '@vue/typescript',
-    'plugin:vue/base',
+    'plugin:vue/base'
   ],
   // plugins: [
   //   'vue',
@@ -26,6 +26,7 @@ module.exports = {
     'comma-spacing': ['error', { 'before': false, 'after': true }],
     'lines-between-class-members': ['error', 'always', { 'exceptAfterSingleLine': true }],
     'array-callback-return': ['error', { 'allowImplicit': true }],
+    '@typescript-eslint/no-empty-interface': 'off',
     'eqeqeq': [1, 'always', { 'null': 'ignore' }],
     'no-else-return': [1, { 'allowElseIf': false }],
     'quotes': [2, 'single', { 'avoidEscape': true }],
@@ -67,6 +68,6 @@ module.exports = {
     defineProps: 'readonly',
     defineEmits: 'readonly',
     defineExpose: 'readonly',
-    withDefaults: 'readonly',
-  },
+    withDefaults: 'readonly'
+  }
 }
