@@ -1,7 +1,18 @@
 module.exports = {
   plugins: {
-    'tailwindcss/nesting': 'postcss-nested',
+    'postcss-import': {},
+    'postcss-nested': {},
     tailwindcss: {},
-    autoprefixer: {}
+    autoprefixer: {},
+    cssnano: {
+      preset: [
+        'default',
+        {
+          discardComments: {
+            removeAll: true
+          }
+        }
+      ]
+    }
   }
 }

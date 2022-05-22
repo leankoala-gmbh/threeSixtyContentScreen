@@ -101,10 +101,6 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   title.value = payload.title?.length ? payload.title : undefined
   openScreen()
 })
-//
-// const animationHandler = (action: 'open' | 'close') => {
-//
-// }
 
 onClickOutside(guide, event => closeScreen())
 </script>

@@ -3,10 +3,8 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   mode: 'jit',
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: ['./index.html', './src/**/*.{vue,ts}']
-  },
+  content: ['./index.html', './src/**/*.{vue,ts}'],
+  safelist: [],
   theme: {
     extend: {
       colors: {
