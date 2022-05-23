@@ -14,16 +14,16 @@
       </div>
     </div>
   </div>
-  <div v-if="type === 'marketing' && ctaButtons?.length" class="p-4">
+  <div v-if="type === 'marketing' && meta?.cta[0]?.url?.length" class="p-4">
     <a
       class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
-      :href="ctaButtons[0].url"
-      :target="ctaButtons[0].target"
+      :href="meta.cta[0].url"
+      :target="meta.cta[0].target || '_blank'"
     >
-      {{ ctaButtons[0].label }}
+      {{ meta.cta[0].label || 'Click here' }}
     </a>
     <div class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
-      Start FREE 14-day PRO trial
+      {{ meta.cta[0].subline || 'Start FREE 14-day PRO trial' }}
     </div>
   </div>
 </template>
@@ -52,7 +52,9 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const content = ref<string>()
-const ctaButtons = ref()
+const ctaButton = ref()
+const buttons = ref()
+const meta = ref<any>()
 const apiError = ref<any>()
 
 const client = new GuideClient('md')
@@ -63,7 +65,7 @@ const fetchContent = async () => {
     const contentText = guide.getText()
     content.value = marked(contentText)
     const { buttons } = guide.getMetaInformation()
-    ctaButtons.value = buttons || null
+    meta.value = guide.getMetaInformation()
   } catch (err) {
     console.error(err)
     apiError.value = err

@@ -73,11 +73,15 @@
     @apply leading-6 font-normal text-content-body;
   }
   p {
-    @apply mb-4 text-base leading-6;
+    @apply mb-4 text-base;
     & + h2,
     & + h3 {
       @apply mt-8;
     }
+  }
+  iframe {
+    @apply mt-8 mb-8;
+    max-width: 100%;
   }
 
   strong {
@@ -122,6 +126,8 @@
  &--marketing {
    mark {
      background-color: #F8D8AF;
+     padding: 2px 4px;
+     border-radius: 4px;
    }
    ul {
      @apply ml-2 mb-6 text-base leading-7 w-full;

@@ -11,6 +11,7 @@
       <TSXContentScreenTrigger
         content-id="_demo.md.elements"
         type="marketing"
+        language="de"
       >
         Open Marketing info
       </TSXContentScreenTrigger>
