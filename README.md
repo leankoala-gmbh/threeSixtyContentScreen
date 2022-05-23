@@ -1,16 +1,21 @@
 # 360 Content Screen
 A WebComponent for displaying info texts from an api.
 
-## Install
-As NPM Module
+## Install 
 ```bash
 npm i @webpros/three-sixty-contentscreen
 ```
 
-## Usage
-The Content Screen provides two elements that must be inserted into the document. The `<tsx-contentscreen>` should be placed in the footer area to display the API information.
+### Alternative with a CDN 
+Or download as script from this URL
+```html
+<script type="module" crossorigin src="https://unpkg.com/@webpros/three-sixty-contentscreen@1.0.3/dist/threeSixtyContentScreen.js"></script>
+```
 
-The `<tsx-contentscreen-trigger content-id="GUIDEID" language="LANG">` element is the trigger element that can be wrapped around buttons or text elements. Important here is that this inner button element has no real function, it should only look good ;) Depending on `guide-id`, when you click on the element, the corresponding content is retrieved via the API and displayed in the `tsx-contentscreen`.
+## Usage
+The Content Screen provides two elements that can be inserted into the document. The `<tsx-contentscreen>` should be placed in the footer area to display the API information.
+
+The `<tsx-contentscreen-trigger content-id="CONTENTID" language="LANG">` element is the trigger element that can be wrapped around buttons or text elements. Important here is that this inner button element has no real function, it should only look good ;) Depending on `content-id`, when you click on the element, the corresponding content is retrieved via the API and displayed in the `tsx-contentscreen`.
 
 The language of the content can be selected via the `language` parameter, by default it is set to English.
 
@@ -31,6 +36,31 @@ The language of the content can be selected via the `language` parameter, by def
 </body>
 ```
 
+### Props
+- `content-id`: The ID of the article to be retrieved
+- `language`: Optional language setting (default: english)
+- `type`: Optional type of the content screen (default: advisor, options: 'advisor' | 'marketing' | 'content')
+- `title`: Optional possibility to overwrite the title of the screen
+
+## Alternative for the `<tsx-contentscreen-trigger>` element
+Events are transmitted and distributed via the [MITT](https://github.com/developit/mitt) lib, so it is possible to trigger the content screen functionally.
+
+```js
+// Emits an event to the contentScreen
+window.mitt.emit('tsxContentScreenConfig', {
+  contentId: 'test',
+})
+```
+
+```ts
+interface MittPayload {
+  contentId: string
+  language?: string
+  type?: 'advisor' | 'marketing' | 'content'
+  title?: string
+}
+```
+
 ## Usage with Frontend Frameworks
 
 ### Vue / Nuxt 
@@ -46,29 +76,11 @@ Vue.config.ignoredElements = [
 ]
 ```
 
-### Alternative to the trigger element
-If you don't want to use the trigger element, you can also send an event directly to the `window.mitt` object with the following payload.
-
-```ts
-interface MittPayload {
-  contentId: string
-  language?: string
-  type?: 'advisor' | 'marketing' | 'content'
-}
-```
-
-```js
-window.mitt.emit('tsxContentScreenConfig', {
-    contentId: 'test',
-  })
-```
-
 ### React / Next
 Currently no findings.
 
 ## Colors
 The colors are defined using CSSVars and must be included either inline or in the custom stylesheet.
-
 
 ```css
 :root {
