@@ -9,7 +9,7 @@
     </div>
     <div>
       <TSXContentScreenTrigger
-        content-id="_demo.md.elements"
+        content-id="marketing.pro.fsc"
         type="marketing"
         language="de"
       >

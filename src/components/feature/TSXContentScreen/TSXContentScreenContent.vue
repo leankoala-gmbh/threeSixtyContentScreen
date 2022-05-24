@@ -14,16 +14,19 @@
       </div>
     </div>
   </div>
-  <div v-if="type === 'marketing' && meta?.cta[0]?.url?.length" class="p-4">
+  <div
+    v-if="type === 'marketing' && meta.cta && meta.cta.url && meta.cta.url.length"
+    class="p-4"
+  >
     <a
       class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
-      :href="meta.cta[0].url"
-      :target="meta.cta[0].target || '_blank'"
+      :href="meta.cta.url"
+      :target="meta.cta.target || '_blank'"
     >
-      {{ meta.cta[0].label || 'Click here' }}
+      {{ meta.cta.label || 'Click here' }}
     </a>
     <div class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
-      {{ meta.cta[0].subline || 'Start FREE 14-day PRO trial' }}
+      {{ meta.cta.subline || 'Start FREE 14-day PRO trial' }}
     </div>
   </div>
 </template>
@@ -32,12 +35,6 @@
 import { ref } from 'vue'
 import GuideClient from '@webpros/koality-guide-client'
 import { marked } from 'marked'
-
-interface IGuideButton {
-  text: string
-  url: string
-  target?: string
-}
 
 export interface Props {
   contentId: string
@@ -52,9 +49,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const content = ref<string>()
-const ctaButton = ref()
-const buttons = ref()
-const meta = ref<any>()
+const meta = ref<any>({})
 const apiError = ref<any>()
 
 const client = new GuideClient('md')
@@ -64,8 +59,11 @@ const fetchContent = async () => {
     const guide = await client.getGuide(props.contentId, props.language)
     const contentText = guide.getText()
     content.value = marked(contentText)
-    const { buttons } = guide.getMetaInformation()
-    meta.value = guide.getMetaInformation()
+    const {buttons, cta} = guide.getMetaInformation()
+    meta.value = {
+      buttons: buttons || [],
+      cta: cta ? cta[0] : null
+    }
   } catch (err) {
     console.error(err)
     apiError.value = err

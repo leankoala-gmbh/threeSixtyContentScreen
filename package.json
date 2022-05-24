@@ -1,6 +1,6 @@
 {
   "name": "@webpros/three-sixty-contentscreen",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/threeSixtyContentScreen.js",
   "description": "Webcomponent for displaying api content",
   "author": "Sascha Fuchs (sascha.fuchs@webpros.com)",
@@ -20,13 +20,12 @@
     "build": "vite build",
     "preview": "vite build && vite preview",
     "start": "yarn dev & wait-on tcp:3000 -v",
-    "generateCss": "tailwindcss -i src/assets/index.css -o src/assets/output.css --minify",
-    "generateCssLong": "postcss ./src/assets/index.css -o ./src/assets/output.css --minify",
-    "prePublish": "npm run generateCssLong && npm run build"
+    "generateCss": "postcss ./src/assets/index.css -o ./src/assets/output.css",
+    "prePublish": "npm run generateCss && npm run build"
   },
   "dependencies": {
     "@vueuse/core": "^8.3.1",
-    "@webpros/koality-guide-client": "^1.1.5",
+    "@webpros/koality-guide-client": "^1.1.6",
     "marked": "^4.0.15",
     "mitt": "^3.0.0",
     "vue": "^3.2.33"
