@@ -5,6 +5,7 @@ module.exports = {
   content: ['./index.html', './src/**/*.{vue,ts}'],
   safelist: [],
   theme: {
+
     extend: {
       lineHeight: {
         'leading-3': '12px',

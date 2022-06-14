@@ -70,7 +70,8 @@
     @apply text-xl;
   }
   p, li {
-    @apply leading-6 font-normal text-content-body;
+    @apply font-normal text-content-body;
+    line-height: 24px;
   }
   p {
     @apply mb-4 text-base;
@@ -90,8 +91,9 @@
 
   ul {
     @apply list-disc;
-    @apply ml-4 mb-6 mt-6 leading-6;
+    @apply ml-4 mb-6 mt-6;
     width: 100%;
+    line-height: 24px;
     li {
       @apply ml-4 mb-2;
     }
@@ -130,8 +132,9 @@
      border-radius: 4px;
    }
    ul {
-     @apply ml-2 mb-6 text-base leading-7 w-full;
+     @apply ml-2 mb-6 text-base w-full;
      list-style-type: none;
+     line-height: 28px;
      li {
        @apply ml-1 mb-2 font-medium;
        &::before {
