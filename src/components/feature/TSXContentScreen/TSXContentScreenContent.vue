@@ -25,8 +25,8 @@
     >
       {{ meta.cta.label || 'Click here' }}
     </a>
-    <div class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
-      {{ meta.cta.subline || 'Start FREE 14-day PRO trial' }}
+    <div v-if="meta.cta.subline" class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
+      {{ meta.cta.subline }}
     </div>
   </div>
 </template>
