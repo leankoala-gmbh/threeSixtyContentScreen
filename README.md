@@ -41,6 +41,7 @@ The language of the content can be selected via the `language` parameter, by def
 - `language`: Optional language setting (default: english)
 - `type`: Optional type of the content screen (default: advisor, options: 'advisor' | 'marketing' | 'content')
 - `title`: Optional possibility to overwrite the title of the screen
+- `label`: Optional possibility to overwrite the label for marketing header
 
 ## Alternative for the `<tsx-contentscreen-trigger>` element
 Events are transmitted and distributed via the [MITT](https://github.com/developit/mitt) lib, so it is possible to trigger the content screen functionally.
@@ -58,6 +59,7 @@ interface MittPayload {
   language?: string
   type?: 'advisor' | 'marketing' | 'content'
   title?: string
+  label?: string
 }
 ```
 

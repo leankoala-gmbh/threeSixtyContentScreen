@@ -71,6 +71,7 @@ const isActiveBackground = ref(false)
 const contentId = ref('')
 const language = ref('en')
 const title = ref<string|undefined>('')
+const label = ref<string|undefined>('')
 const type = ref<string|undefined>('content')
 window.mitt = window.mitt || mitt()
 const body = document.querySelector('body')
@@ -90,6 +91,7 @@ const closeScreen = () => {
     body!.style.overflow = ''
     contentId.value = ''
     title.value = ''
+    label.value = ''
     language.value = 'en'
     type.value = 'advisor'
   }, 300)
@@ -99,6 +101,7 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   contentId.value = payload.contentId
   language.value = payload.language || 'en'
   type.value = payload.type || 'advisor'
+  label.value = payload.label || 'pro'
   title.value = payload.title?.length ? payload.title : undefined
   openScreen()
 })

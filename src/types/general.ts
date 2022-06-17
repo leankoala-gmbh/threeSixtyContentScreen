@@ -3,4 +3,5 @@ export interface IContentConfig {
   language?: string
   type?: 'advisor' | 'marketing' | 'content' | undefined
   title?: string
+  label?: string
 }
