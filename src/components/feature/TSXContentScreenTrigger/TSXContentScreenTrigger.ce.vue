@@ -18,13 +18,15 @@ export interface Props {
   language?: string
   title?: string
   type?: 'advisor' | 'marketing' | 'content' | undefined
+  label?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   contentId: '',
   title: '',
   language: 'en',
-  type: 'advisor'
+  type: 'advisor',
+  label: 'pro'
 })
 
 window.mitt = window.mitt || mitt()
@@ -34,7 +36,8 @@ const trigger = () => {
     contentId: props.contentId,
     language: props.language,
     type: props.type,
-    title: props.title
+    title: props.title,
+    label: props.label
   })
 }
 
