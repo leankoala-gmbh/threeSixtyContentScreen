@@ -21,6 +21,7 @@
               <TSXHeaderMarketing
                 v-if="type === 'marketing'"
                 :title="title"
+                :label="label"
               />
               <div v-if="type === 'content'" />
               <div
