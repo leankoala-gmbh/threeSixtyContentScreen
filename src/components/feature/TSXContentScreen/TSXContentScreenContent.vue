@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-y-scroll px-6 pb-6 flex-auto">
+  <div class="overflow-y-auto px-6 pb-6 flex-auto">
     <div class="markdown-body ">
       <div
         v-if="!apiError"
