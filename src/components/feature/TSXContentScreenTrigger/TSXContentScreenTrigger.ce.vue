@@ -14,7 +14,8 @@ declare global {
 }
 
 export interface Props {
-  contentId: string
+  contentId?: string
+  contentUrl?: string
   language?: string
   title?: string
   type?: 'advisor' | 'marketing' | 'content' | undefined
@@ -23,6 +24,7 @@ export interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   contentId: '',
+  contentUrl: '',
   title: '',
   language: 'en',
   type: 'advisor',
@@ -33,6 +35,7 @@ window.mitt = window.mitt || mitt()
 
 const trigger = () => {
   window.mitt.emit('tsxContentScreenConfig', {
+    contentUrl: props.contentUrl,
     contentId: props.contentId,
     language: props.language,
     type: props.type,

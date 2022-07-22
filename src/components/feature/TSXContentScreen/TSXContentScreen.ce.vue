@@ -38,13 +38,18 @@
               </div>
             </header>
           </div>
-
           <TSXContentScreenContent
-            v-if="isOpenGuide"
+            v-if="isOpenGuide && contentId"
             :content-id="contentId"
             :language="language"
             :type="type"
           />
+          <div v-if="contentUrl" class=" px-6 pb-6 flex-auto">
+            <iframe
+              :src="contentUrl"
+              class="w-full h-full"
+            />
+          </div>
         </div>
       </div>
     </transition>
@@ -70,6 +75,7 @@ const guide = ref(null)
 const isOpenGuide = ref(false)
 const isActiveBackground = ref(false)
 const contentId = ref('')
+const contentUrl = ref('')
 const language = ref('en')
 const title = ref<string|undefined>('')
 const label = ref<string|undefined>('')
@@ -91,6 +97,7 @@ const closeScreen = () => {
     isActiveBackground.value = false
     body!.style.overflow = ''
     contentId.value = ''
+    contentUrl.value = ''
     title.value = ''
     label.value = ''
     language.value = 'en'
@@ -99,7 +106,8 @@ const closeScreen = () => {
 }
 
 window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
-  contentId.value = payload.contentId
+  contentUrl.value = payload.contentUrl || ''
+  contentId.value = payload.contentId || ''
   language.value = payload.language || 'en'
   type.value = payload.type || 'advisor'
   label.value = payload.label || 'pro'
