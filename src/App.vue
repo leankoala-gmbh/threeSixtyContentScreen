@@ -7,10 +7,20 @@
         Open Advisor
       </TSXContentScreenTrigger>
     </div>
+    <div class="mb-10">
+      <TSXContentScreenTrigger
+        content-id="marketing.pro.fsc"
+        type="marketing"
+        language="de"
+      >
+        Open Marketing info
+      </TSXContentScreenTrigger>
+    </div>
     <div>
       <TSXContentScreenTrigger
-        content-id="_demo.md.elements"
+        content-url="https://www.google.com"
         type="marketing"
+        language="de"
       >
         Open Marketing info
       </TSXContentScreenTrigger>

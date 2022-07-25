@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './assets/index.css'
-import '../colors.css'
+import './assets/colors.css'
 
 import { defineCustomElement } from 'vue'
 import TSXContentScreen from './components/feature/TSXContentScreen/TSXContentScreen.ce.vue'

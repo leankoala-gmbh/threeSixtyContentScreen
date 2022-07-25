@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center">
     <div class="rounded uppercase text-white font-medium bg-marketing text-sm px-2 py-1 mr-2">
-      Pro
+      {{ label }}
     </div>
     <div class="font-bold text-sm uppercase">
       {{ title }}
@@ -15,7 +15,11 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'You have discovered pro feature'
+      default: 'You have discovered a pro feature'
+    },
+    label: {
+      type: String,
+      default: 'Pro'
     }
   }
 }

@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 .contentScreenWrapper {
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -70,23 +70,30 @@
     @apply text-xl;
   }
   p, li {
-    @apply leading-6 font-normal text-content-body;
+    @apply font-normal text-content-body;
+    line-height: 24px;
   }
   p {
-    @apply mb-4 text-base leading-6;
+    @apply mb-4 text-base;
     & + h2,
     & + h3 {
       @apply mt-8;
     }
   }
+  iframe {
+    @apply mt-8 mb-8;
+    max-width: 100%;
+  }
 
   strong {
-    @apply font-medium;
+    @apply font-bold;
   }
 
   ul {
     @apply list-disc;
-    @apply ml-4 mb-6 mt-6 leading-6;
+    @apply ml-4 mb-6 mt-6;
+    width: 100%;
+    line-height: 24px;
     li {
       @apply ml-4 mb-2;
     }
@@ -121,13 +128,16 @@
  &--marketing {
    mark {
      background-color: #F8D8AF;
+     padding: 2px 4px;
+     border-radius: 4px;
    }
    ul {
-     @apply ml-2 mb-6 text-base leading-7;
+     @apply ml-2 mb-6 text-base w-full;
      list-style-type: none;
+     line-height: 28px;
      li {
        @apply ml-1 mb-2 font-medium;
-       &:before {
+       &::before {
          content: '';
          margin-right: 8px;
          height: 16px;
