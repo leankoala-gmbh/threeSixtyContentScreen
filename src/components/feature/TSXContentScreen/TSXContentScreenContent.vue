@@ -73,10 +73,9 @@ const fetchContent = async () => {
 }
 
 const fetchedURL = computed(() => {
-  if (props.partnerShopUrl?.length && meta.value.cta.url === '[PARTNERSHOPURL]') {
-    return props.partnerShopUrl
-  }
-  return meta.value.cta.url
+  return props.partnerShopUrl?.length && meta.value.cta.partnerUrl
+    ? props.partnerShopUrl
+    : meta.value.cta.url
 })
 
 fetchContent()

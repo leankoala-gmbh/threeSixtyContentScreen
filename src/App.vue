@@ -12,7 +12,7 @@
         content-id="_demo.marketing.kitchensink"
         type="marketing"
         language="en"
-        partner-shop-url="http://google.de"
+        partner-shop-url="http://webpros.de"
       >
         Open Marketing info
       </TSXContentScreenTrigger>
