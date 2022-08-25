@@ -9,9 +9,10 @@
     </div>
     <div class="mb-10">
       <TSXContentScreenTrigger
-        content-id="marketing.pro.fsc"
+        content-id="_demo.marketing.kitchensink"
         type="marketing"
-        language="de"
+        language="en"
+        partner-shop-url="http://google.de"
       >
         Open Marketing info
       </TSXContentScreenTrigger>

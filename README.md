@@ -42,6 +42,7 @@ The language of the content can be selected via the `language` parameter, by def
 - `type`: Optional type of the content screen (default: advisor, options: 'advisor' | 'marketing' | 'content')
 - `title`: Optional possibility to overwrite the title of the screen
 - `label`: Optional possibility to overwrite the label for marketing header
+- `partner-shop-url`: Optional to overwrite marked CTA URL from outside
 
 ## Alternative for the `<tsx-contentscreen-trigger>` element
 Events are transmitted and distributed via the [MITT](https://github.com/developit/mitt) lib, so it is possible to trigger the content screen functionally.
@@ -60,6 +61,7 @@ interface MittPayload {
   type?: 'advisor' | 'marketing' | 'content'
   title?: string
   label?: string
+  partnerShopUrl?: string
 }
 ```
 

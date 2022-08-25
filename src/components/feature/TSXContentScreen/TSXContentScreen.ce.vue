@@ -43,6 +43,7 @@
             :content-id="contentId"
             :language="language"
             :type="type"
+            :partner-shop-url="partnerShopUrl"
           />
           <div v-if="contentUrl" class=" px-6 pb-6 flex-auto">
             <iframe
@@ -80,6 +81,7 @@ const language = ref('en')
 const title = ref<string|undefined>('')
 const label = ref<string|undefined>('')
 const type = ref<string|undefined>('content')
+const partnerShopUrl = ref<string|undefined>('')
 window.mitt = window.mitt || mitt()
 const body = document.querySelector('body')
 
@@ -102,6 +104,7 @@ const closeScreen = () => {
     label.value = ''
     language.value = 'en'
     type.value = 'advisor'
+    partnerShopUrl.value = ''
   }, 300)
 }
 
@@ -112,6 +115,7 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   type.value = payload.type || 'advisor'
   label.value = payload.label || 'pro'
   title.value = payload.title?.length ? payload.title : undefined
+  partnerShopUrl.value = payload.partnerShopUrl?.length ? payload.partnerShopUrl : undefined
   openScreen()
 })
 

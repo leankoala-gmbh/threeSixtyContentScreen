@@ -5,4 +5,5 @@ export interface IContentConfig {
   type?: 'advisor' | 'marketing' | 'content' | undefined
   title?: string
   label?: string
+  partnerShopUrl?: string
 }

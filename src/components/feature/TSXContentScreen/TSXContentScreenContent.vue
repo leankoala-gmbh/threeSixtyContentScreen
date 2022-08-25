@@ -15,12 +15,12 @@
     </div>
   </div>
   <div
-    v-if="type === 'marketing' && meta.cta && meta.cta.url && meta.cta.url.length"
+    v-if="type === 'marketing' && meta.cta && fetchedURL && fetchedURL.length"
     class="p-4"
   >
     <a
       class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
-      :href="meta.cta.url"
+      :href="fetchedURL"
       :target="meta.cta.target || '_blank'"
     >
       {{ meta.cta.label || 'Click here' }}
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import {computed, ref} from 'vue'
 import GuideClient from '@webpros/koality-guide-client'
 import { marked } from 'marked'
 
@@ -40,12 +40,14 @@ export interface Props {
   contentId: string
   language?: string
   type?: 'advisor' | 'marketing' | 'content'
+  partnerShopUrl?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   language: 'en',
   contentId: '',
-  type: 'content'
+  type: 'content',
+  partnerShopUrl: ''
 })
 
 const content = ref<string>()
@@ -69,6 +71,13 @@ const fetchContent = async () => {
     apiError.value = err
   }
 }
+
+const fetchedURL = computed(() => {
+  if (props.partnerShopUrl?.length && meta.value.cta.url === '[PARTNERSHOPURL]') {
+    return props.partnerShopUrl
+  }
+  return meta.value.cta.url
+})
 
 fetchContent()
 </script>

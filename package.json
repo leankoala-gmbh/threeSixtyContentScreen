@@ -1,6 +1,6 @@
 {
   "name": "@webpros/three-sixty-contentscreen",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "main": "dist/threeSixtyContentScreen.js",
   "description": "Webcomponent for displaying api content",
   "author": "Sascha Fuchs (sascha.fuchs@webpros.com)",
