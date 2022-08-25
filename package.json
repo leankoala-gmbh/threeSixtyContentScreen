@@ -1,6 +1,6 @@
 {
   "name": "@webpros/three-sixty-contentscreen",
-  "version": "1.0.0",
+  "version": "1.0.14",
   "main": "dist/threeSixtyContentScreen.js",
   "description": "Webcomponent for displaying api content",
   "author": "Sascha Fuchs (sascha.fuchs@webpros.com)",
@@ -13,42 +13,45 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/leankoala-gmbh/360Advisor.git"
+    "url": "https://github.com/leankoala-gmbh/threeSixtyContentScreen.git"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite build && vite preview",
     "start": "yarn dev & wait-on tcp:3000 -v",
-    "generateCss": "tailwindcss -i src/assets/index.css -o src/assets/output.css --minify",
+    "generateCss": "postcss ./src/assets/index.css -o ./src/assets/output.css",
     "prePublish": "npm run generateCss && npm run build"
   },
   "dependencies": {
-    "@vueuse/core": "^8.3.1",
-    "@webpros/koality-guide-client": "^1.1.5",
-    "marked": "^4.0.15",
+    "@vueuse/core": "8.5.0",
+    "@webpros/koality-guide-client": "^1.1.6",
+    "marked": "^4.0.17",
     "mitt": "^3.0.0",
-    "vue": "^3.2.33"
+    "vue": "^3.2.37"
   },
   "devDependencies": {
     "@types/marked": "^4.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.21.0",
-    "@typescript-eslint/parser": "^5.21.0",
-    "@vitejs/plugin-vue": "^2.3.1",
-    "@vue/eslint-config-standard": "^6.1.0",
-    "@vue/eslint-config-typescript": "^10.0.0",
-    "autoprefixer": "^10.4.6",
-    "eslint": "^8.14.0",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/eslint-config-standard": "^7.0.0",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "autoprefixer": "^10.4.7",
+    "cssnano": "^5.1.11",
+    "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-vue": "^8.7.1",
-    "postcss": "^8.4.13",
+    "eslint-plugin-vue": "^9.1.1",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.1.0",
     "postcss-nested": "^5.0.6",
-    "tailwindcss": "^3.0.24",
-    "typescript": "^4.6.4",
-    "vite": "^2.9.6",
+    "tailwindcss": "^3.1.2",
+    "typescript": "^4.7.3",
+    "vite": "^2.9.12",
     "wait-on": "~6.0"
   }
 }
