@@ -41,13 +41,15 @@ export interface Props {
   language?: string
   type?: 'advisor' | 'marketing' | 'content'
   partnerShopUrl?: string
+  debug: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   language: 'en',
   contentId: '',
   type: 'content',
-  partnerShopUrl: ''
+  partnerShopUrl: '',
+  debug: false
 })
 
 const content = ref<string>()
@@ -79,4 +81,11 @@ const fetchedURL = computed(() => {
 })
 
 fetchContent()
+
+if (props.debug) {
+  console.log('ContentScreen Props', props)
+  console.log('ContentScreen FetchedUrl', fetchedURL.value)
+  console.log('ContentScreen Meta', meta.value)
+  console.log('ContentScreen content', content.value)
+}
 </script>
