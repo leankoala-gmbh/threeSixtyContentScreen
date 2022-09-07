@@ -68,6 +68,10 @@ const fetchContent = async () => {
       buttons: buttons || [],
       cta: cta ? cta[0] : null
     }
+    if (props.debug) {
+      console.log('ContentScreen Meta', meta.value)
+      console.log('ContentScreen content', content.value)
+    }
   } catch (err) {
     console.error(err)
     apiError.value = err
@@ -75,17 +79,16 @@ const fetchContent = async () => {
 }
 
 const fetchedURL = computed(() => {
-  return props.partnerShopUrl?.length && meta.value.cta.partnerUrl
+  const url = props.partnerShopUrl?.length && meta.value.cta.partnerUrl
     ? props.partnerShopUrl
     : meta.value.cta.url
+  if (props.debug) console.log('ContentScreen fetchedURL', url)
+  return url
 })
 
 fetchContent()
 
 if (props.debug) {
   console.log('ContentScreen Props', props)
-  console.log('ContentScreen FetchedUrl', fetchedURL.value)
-  console.log('ContentScreen Meta', meta.value)
-  console.log('ContentScreen content', content.value)
 }
 </script>
