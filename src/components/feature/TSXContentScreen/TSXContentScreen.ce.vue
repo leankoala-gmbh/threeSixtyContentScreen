@@ -44,6 +44,7 @@
             :language="language"
             :type="type"
             :partner-shop-url="partnerShopUrl"
+            :debug="debug"
           />
           <div v-if="contentUrl" class=" px-6 pb-6 flex-auto">
             <iframe
@@ -71,6 +72,13 @@ declare global {
     mitt?: any
   }
 }
+
+const props = defineProps({
+  debug: {
+    type: Boolean,
+    default: false
+  }
+})
 
 const guide = ref(null)
 const isOpenGuide = ref(false)
