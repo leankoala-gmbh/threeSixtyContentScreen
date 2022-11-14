@@ -39,7 +39,7 @@ import { marked } from 'marked'
 export interface Props {
   contentId: string
   language?: string
-  type?: 'advisor' | 'marketing' | 'content'
+  type?: 'advisor' | 'kAdvisor' | 'marketing' | 'content'
   partnerShopUrl?: string
   debug: boolean
 }

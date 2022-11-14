@@ -14,6 +14,10 @@
         <div class="flex flex-col mobileFullHeight">
           <div class="px-6 pt-6 mb-8">
             <header class="flex justify-between relative">
+              <TSXHeaderKoalityAdvisor
+                v-if="type === 'kAdvisor'"
+                :title="title"
+              />
               <TSXHeaderAdvisor
                 v-if="type === 'advisor'"
                 :title="title"
@@ -66,6 +70,7 @@ import TSXContentScreenContent from './TSXContentScreenContent.vue'
 import {IContentConfig} from '@/types/general'
 import TSXHeaderAdvisor from '@/components/feature/TSXContentScreen/TSXHeaderAdvisor.vue'
 import TSXHeaderMarketing from '@/components/feature/TSXContentScreen/TSXHeaderMarketing.vue'
+import TSXHeaderKoalityAdvisor from '@/components/feature/TSXContentScreen/TSXHeaderKoalityAdvisor.vue'
 
 declare global {
   interface Window {
