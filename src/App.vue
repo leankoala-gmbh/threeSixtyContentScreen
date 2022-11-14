@@ -9,12 +9,11 @@
     </div>
     <div class="mb-10">
       <TSXContentScreenTrigger
-        content-id="_demo.marketing.kitchensink"
-        type="marketing"
+        content-id="monitoring.content.content"
+        type="kAdvisor"
         language="en"
-        partner-shop-url="http://webpros.de"
       >
-        Open Marketing info
+        Open kAdvisor info
       </TSXContentScreenTrigger>
     </div>
     <div>

@@ -18,7 +18,7 @@ export interface Props {
   contentUrl?: string
   language?: string
   title?: string
-  type?: 'advisor' | 'marketing' | 'content' | 'kAdvisor' | undefined
+  type?: 'advisor' | 'marketing' | 'content' | 'koality' | undefined
   label?: string
   partnerShopUrl?: string
 }

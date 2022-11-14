@@ -15,7 +15,7 @@
           <div class="px-6 pt-6 mb-8">
             <header class="flex justify-between relative">
               <TSXHeaderKoalityAdvisor
-                v-if="type === 'kAdvisor'"
+                v-if="type === 'koality'"
                 :title="title"
               />
               <TSXHeaderAdvisor
