@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-y-auto px-6 pb-6 flex-auto">
-    <div class="markdown-body ">
+    <div v-if="!iframeIsOpen" class="markdown-body ">
       <div
         v-if="!apiError"
         class="richTextContent"
@@ -13,9 +13,14 @@
         {{ apiError }}
       </div>
     </div>
+    <iframe
+      v-if="iframeIsOpen"
+      :src="meta.iframe.url"
+      frameborder="0"
+    />
   </div>
   <div
-    v-if="type === 'marketing' && meta.cta && fetchedURL && fetchedURL.length"
+    v-if="type === 'marketing' && !meta.iframe && meta.cta && fetchedURL && fetchedURL.length"
     class="p-4"
   >
     <a
@@ -28,6 +33,14 @@
     <div v-if="meta.cta.subline" class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
       {{ meta.cta.subline }}
     </div>
+  </div>
+  <div v-if="meta.iframe && !iframeIsOpen" class="p-4">
+    <a
+      class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
+      @click="triggerIframe"
+    >
+      {{ meta.iframe.label || 'Open here' }}
+    </a>
   </div>
 </template>
 
@@ -55,6 +68,7 @@ const props = withDefaults(defineProps<Props>(), {
 const content = ref<string>()
 const meta = ref<any>({})
 const apiError = ref<any>()
+const iframeIsOpen = ref(false)
 
 const client = new GuideClient('md')
 
@@ -63,10 +77,11 @@ const fetchContent = async () => {
     const guide = await client.getGuide(props.contentId, props.language)
     const contentText = guide.getText()
     content.value = marked(contentText)
-    const {buttons, cta} = guide.getMetaInformation()
+    const {buttons, cta, iframe} = guide.getMetaInformation()
     meta.value = {
       buttons: buttons || [],
-      cta: cta ? cta[0] : null
+      cta: cta?.[0] || null,
+      iframe: iframe?.[0] || null
     }
     if (props.debug) {
       console.log('ContentScreen Meta', meta.value)
@@ -87,6 +102,10 @@ const fetchedURL = computed(() => {
 })
 
 fetchContent()
+
+const triggerIframe = () => {
+  iframeIsOpen.value = true
+}
 
 if (props.debug) {
   console.log('ContentScreen Props', props)

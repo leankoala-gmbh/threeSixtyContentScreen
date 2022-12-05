@@ -25,7 +25,17 @@
         Open Marketing info
       </TSXContentScreenTrigger>
     </div>
-    <TSXContentScreen />
+    <div>
+      <TSXContentScreenTrigger
+        content-id="_demo.iframe.test"
+        type="marketing"
+        language="de"
+      >
+        Open Iframe Content
+      </TSXContentScreenTrigger>
+    </div>
+
+    <TSXContentScreen :debug="true" />
   </div>
 </template>
 

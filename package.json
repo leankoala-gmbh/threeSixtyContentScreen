@@ -1,6 +1,6 @@
 {
   "name": "@webpros/three-sixty-contentscreen",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "main": "dist/threeSixtyContentScreen.js",
   "description": "Webcomponent for displaying api content",
   "author": "Sascha Fuchs (sascha.fuchs@webpros.com)",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@vueuse/core": "8.5.0",
-    "@webpros/koality-guide-client": "^1.1.6",
+    "@webpros/koality-guide-client": "^1.1.8",
     "marked": "^4.0.17",
     "mitt": "^3.0.0",
     "vue": "^3.2.37"
