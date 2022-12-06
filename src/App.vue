@@ -30,6 +30,8 @@
         content-id="_demo.iframe.test"
         type="marketing"
         language="de"
+        iframe-button-label="Open in iframe"
+        iframe-url="https://www.google.com"
       >
         Open Iframe Content
       </TSXContentScreenTrigger>

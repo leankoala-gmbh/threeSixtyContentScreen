@@ -21,6 +21,8 @@ export interface Props {
   type?: 'advisor' | 'marketing' | 'content' | 'koality' | undefined
   label?: string
   partnerShopUrl?: string
+  iframeButtonLabel?: string | null
+  iframeUrl?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -30,7 +32,9 @@ const props = withDefaults(defineProps<Props>(), {
   language: 'en',
   type: 'advisor',
   label: 'pro',
-  partnerShopUrl: ''
+  partnerShopUrl: '',
+  iframeButtonLabel: null,
+  iframeUrl: null
 })
 
 window.mitt = window.mitt || mitt()
@@ -43,7 +47,9 @@ const trigger = () => {
     type: props.type,
     title: props.title,
     label: props.label,
-    partnerShopUrl: props.partnerShopUrl
+    partnerShopUrl: props.partnerShopUrl,
+    iframeButtonLabel: props.iframeButtonLabel,
+    iframeUrl: props.iframeUrl
   })
 }
 

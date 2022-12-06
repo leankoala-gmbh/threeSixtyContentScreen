@@ -15,12 +15,12 @@
     </div>
     <iframe
       v-if="iframeIsOpen"
-      :src="meta.iframe.url"
+      :src="iframeUrl"
       frameborder="0"
     />
   </div>
   <div
-    v-if="type === 'marketing' && !meta.iframe && meta.cta && fetchedURL && fetchedURL.length"
+    v-if="type === 'marketing' && !iframeUrl && meta.cta && fetchedURL && fetchedURL.length"
     class="p-4"
   >
     <a
@@ -34,12 +34,12 @@
       {{ meta.cta.subline }}
     </div>
   </div>
-  <div v-if="meta.iframe && !iframeIsOpen" class="p-4">
+  <div v-if="iframeUrl && !iframeIsOpen" class="p-4">
     <a
       class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
       @click="triggerIframe"
     >
-      {{ meta.iframe.label || 'Open here' }}
+      {{ iframeButtonLabel || 'Open here' }}
     </a>
   </div>
 </template>
@@ -55,6 +55,8 @@ export interface Props {
   type?: 'advisor' | 'koality' | 'marketing' | 'content'
   partnerShopUrl?: string
   debug: boolean
+  iframeButtonLabel?: string | null
+  iframeUrl?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -62,7 +64,9 @@ const props = withDefaults(defineProps<Props>(), {
   contentId: '',
   type: 'content',
   partnerShopUrl: '',
-  debug: false
+  debug: false,
+  iframeButtonLabel: null,
+  iframeUrl: null
 })
 
 const content = ref<string>()
@@ -77,11 +81,10 @@ const fetchContent = async () => {
     const guide = await client.getGuide(props.contentId, props.language)
     const contentText = guide.getText()
     content.value = marked(contentText)
-    const {buttons, cta, iframe} = guide.getMetaInformation()
+    const {buttons, cta} = guide.getMetaInformation()
     meta.value = {
       buttons: buttons || [],
-      cta: cta?.[0] || null,
-      iframe: iframe?.[0] || null
+      cta: cta?.[0] || null
     }
     if (props.debug) {
       console.log('ContentScreen Meta', meta.value)

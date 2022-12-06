@@ -6,4 +6,6 @@ export interface IContentConfig {
   title?: string
   label?: string
   partnerShopUrl?: string
+  iframeButtonLabel?: string | null
+  iframeUrl?: string | null
 }

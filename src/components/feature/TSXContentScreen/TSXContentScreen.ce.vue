@@ -45,6 +45,8 @@
           <TSXContentScreenContent
             v-if="isOpenGuide && contentId"
             :content-id="contentId"
+            :iframe-button-label="iframeButtonLabel"
+            :iframe-url="iframeUrl"
             :language="language"
             :type="type"
             :partner-shop-url="partnerShopUrl"
@@ -94,6 +96,8 @@ const language = ref('en')
 const title = ref<string|undefined>('')
 const label = ref<string|undefined>('')
 const type = ref<string|undefined>('content')
+const iframeButtonLabel = ref<string|null>(null)
+const iframeUrl = ref<string|null>(null)
 const partnerShopUrl = ref<string|undefined>('')
 window.mitt = window.mitt || mitt()
 const body = document.querySelector('body')
@@ -118,6 +122,8 @@ const closeScreen = () => {
     language.value = 'en'
     type.value = 'advisor'
     partnerShopUrl.value = ''
+    iframeButtonLabel.value = null
+    iframeUrl.value = null
   }, 300)
 }
 
@@ -129,6 +135,8 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   label.value = payload.label || 'pro'
   title.value = payload.title?.length ? payload.title : undefined
   partnerShopUrl.value = payload.partnerShopUrl?.length ? payload.partnerShopUrl : undefined
+  iframeUrl.value = payload.iframeUrl?.length ? payload.iframeUrl : null
+  iframeButtonLabel.value = payload.iframeButtonLabel?.length ? payload.iframeButtonLabel : null
   openScreen()
 })
 
