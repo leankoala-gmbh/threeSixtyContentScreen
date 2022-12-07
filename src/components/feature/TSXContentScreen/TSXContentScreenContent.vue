@@ -15,7 +15,7 @@
     </div>
     <iframe
       v-if="iframeIsOpen"
-      class="w-full"
+      class="w-full h-full"
       :src="iframeUrl"
       frameborder="0"
     />
