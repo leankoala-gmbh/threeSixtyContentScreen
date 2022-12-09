@@ -109,6 +109,9 @@ fetchContent()
 
 const triggerIframe = () => {
   iframeIsOpen.value = true
+  window.mitt.emit('tsxContentScreenEvents', {
+    action: 'openIframe'
+  })
 }
 
 if (props.debug) {

@@ -65,6 +65,20 @@ interface MittPayload {
 }
 ```
 
+## Sending Events from the ContentScreen
+
+```js
+window.mitt.emit('tsxContentScreenEvents', {
+  action: 'iFrameOpen'
+})
+```
+
+```ts
+interface MITTSendPayload {
+  action: string
+}
+```
+
 ## Usage with Frontend Frameworks
 
 ### Vue / Nuxt 
