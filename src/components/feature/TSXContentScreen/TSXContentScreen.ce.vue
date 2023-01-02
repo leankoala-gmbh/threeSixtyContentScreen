@@ -43,7 +43,7 @@
             </header>
           </div>
           <TSXContentScreenContent
-            v-if="isOpenGuide && contentId"
+            v-if="isOpenGuide && contentId && !(contentUrl?.length || htmlContent?.length)"
             :content-id="contentId"
             :iframe-button-label="iframeButtonLabel"
             :iframe-url="iframeUrl"
@@ -58,6 +58,7 @@
               class="w-full h-full"
             />
           </div>
+          <div v-if="htmlContent" v-html="htmlContent" />
         </div>
       </div>
     </transition>
@@ -98,6 +99,7 @@ const label = ref<string|undefined>('')
 const type = ref<string|undefined>('content')
 const iframeButtonLabel = ref<string|null>(null)
 const iframeUrl = ref<string|null>(null)
+const htmlContent = ref<string|null>(null)
 const partnerShopUrl = ref<string|undefined>('')
 window.mitt = window.mitt || mitt()
 const body = document.querySelector('body')
@@ -124,6 +126,7 @@ const closeScreen = () => {
     partnerShopUrl.value = ''
     iframeButtonLabel.value = null
     iframeUrl.value = null
+    htmlContent.value = null
   }, 300)
 }
 
@@ -137,6 +140,7 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   partnerShopUrl.value = payload.partnerShopUrl?.length ? payload.partnerShopUrl : undefined
   iframeUrl.value = payload.iframeUrl?.length ? payload.iframeUrl : null
   iframeButtonLabel.value = payload.iframeButtonLabel?.length ? payload.iframeButtonLabel : null
+  htmlContent.value = payload.htmlContent?.length ? payload.htmlContent : null
   openScreen()
 })
 

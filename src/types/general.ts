@@ -8,4 +8,5 @@ export interface IContentConfig {
   partnerShopUrl?: string
   iframeButtonLabel?: string | null
   iframeUrl?: string | null
+  htmlContent: string | null
 }

@@ -23,6 +23,7 @@ export interface Props {
   partnerShopUrl?: string
   iframeButtonLabel?: string | null
   iframeUrl?: string | null
+  htmlContent: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -34,7 +35,8 @@ const props = withDefaults(defineProps<Props>(), {
   label: 'pro',
   partnerShopUrl: '',
   iframeButtonLabel: null,
-  iframeUrl: null
+  iframeUrl: null,
+  htmlContent: null
 })
 
 window.mitt = window.mitt || mitt()
@@ -49,7 +51,8 @@ const trigger = () => {
     label: props.label,
     partnerShopUrl: props.partnerShopUrl,
     iframeButtonLabel: props.iframeButtonLabel,
-    iframeUrl: props.iframeUrl
+    iframeUrl: props.iframeUrl,
+    htmlContent: props.htmlContent
   })
 }
 
