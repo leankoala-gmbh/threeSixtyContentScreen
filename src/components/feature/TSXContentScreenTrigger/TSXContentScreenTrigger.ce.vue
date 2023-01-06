@@ -18,12 +18,12 @@ export interface Props {
   contentUrl?: string
   language?: string
   title?: string
-  type?: 'advisor' | 'marketing' | 'content' | 'koality' | undefined
+  type?: 'advisor' | 'marketing' | 'content' | 'koality' | 'changelog' | undefined
   label?: string
   partnerShopUrl?: string
   iframeButtonLabel?: string | null
   iframeUrl?: string | null
-  htmlContent: string | null
+  changelogContent: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   partnerShopUrl: '',
   iframeButtonLabel: null,
   iframeUrl: null,
-  htmlContent: null
+  changelogContent: null
 })
 
 window.mitt = window.mitt || mitt()
@@ -52,7 +52,7 @@ const trigger = () => {
     partnerShopUrl: props.partnerShopUrl,
     iframeButtonLabel: props.iframeButtonLabel,
     iframeUrl: props.iframeUrl,
-    htmlContent: props.htmlContent
+    changelogContent: props.changelogContent
   })
 }
 
