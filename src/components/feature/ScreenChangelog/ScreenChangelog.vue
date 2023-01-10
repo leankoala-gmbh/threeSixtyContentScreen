@@ -2,10 +2,9 @@
 import CloseScreenButton from '@/components/base/CloseScreenButton/CloseScreenButton.vue'
 import { useTranslator } from '@/composables/translator'
 import {IChangelogEndpoints, IChangelogList} from '@/types/general'
-import {computed, onMounted, ref, watchEffect} from 'vue'
+import { onMounted, ref, watchEffect} from 'vue'
 import axios from 'axios'
 import ChangelogEntry from '@/components/feature/ChangelogEntry/ChangelogEntry.vue'
-import {watch} from 'vite/types/chokidar'
 
 const emit = defineEmits(['closeScreen'])
 
@@ -87,7 +86,7 @@ onMounted(() => {
       </div>
     </header>
     <div class="overflow-y-auto h-full pb-4">
-      <main v-if="changelogData" class="px-6 flex flex-col gap-10 overflow-y-auto">
+      <main v-if="changelogData" class="px-6 flex flex-col gap-6 overflow-y-auto">
         <ChangelogEntry
           v-for="entry in changelogData"
           :key="entry.id"

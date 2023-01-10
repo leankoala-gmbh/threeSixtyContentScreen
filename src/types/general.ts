@@ -25,9 +25,5 @@ export interface IChangelogList {
   body: string
   url: string
   type: string
-  createdAt: {
-    date: string
-    timezone_type: number
-    timezone: string
-  }
+  changelogCreatedAt: string
 }

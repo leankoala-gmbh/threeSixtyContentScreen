@@ -26,12 +26,16 @@ const markdownBody = computed(() => {
         {{ translate(entry.type) }}
       </div>
       <div class="text-slate-500">
-        {{ new Date(entry.createdAt.date).toLocaleDateString(getLanguage()) }}
+        {{ new Date(entry.changelogCreatedAt).toLocaleDateString(getLanguage()) }}
       </div>
     </div>
     <h2 class="text-xl font-medium mb-4">
       {{ entry.title }}
     </h2>
-    <div v-if="markdownBody" v-html="markdownBody" />
+    <div
+      v-if="markdownBody"
+      class="richTextContent richTextContent--changelog"
+      v-html="markdownBody"
+    />
   </div>
 </template>
