@@ -21,6 +21,7 @@
     "preview": "vite build && vite preview",
     "start": "yarn dev & wait-on tcp:3000 -v",
     "test:unit": "vitest run",
+    "test:unit:ui": "vitest --ui",
     "typecheck": "vue-tsc --noEmit",
     "generateCss": "postcss ./src/assets/index.css -o ./src/assets/output.css",
     "prePublish": "npm run test:unit && npm run typecheck && npm run generateCss && npm run build"
@@ -40,6 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
     "@vitejs/plugin-vue": "^2.3.4",
+    "@vitest/ui": "^0.27.0",
     "@vue/eslint-config-standard": "^8.0.1",
     "@vue/eslint-config-typescript": "^11.0.2",
     "@vue/test-utils": "^2.2.7",
