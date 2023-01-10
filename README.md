@@ -58,7 +58,7 @@ window.mitt.emit('tsxContentScreenConfig', {
 interface MittPayload {
   contentId: string
   language?: string
-  type?: 'advisor' | 'marketing' | 'content'
+  type?: 'advisor' | 'marketing' | 'content' | 'changelog' | 'kAdvisor'
   title?: string
   label?: string
   partnerShopUrl?: string

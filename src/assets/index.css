@@ -151,3 +151,26 @@
    }
  }
 }
+
+.changelogColors {
+  &--added {
+    background-color: var(--tsxScreen-Changelog-added-bg);
+    color: var(--tsxScreen-Changelog-added-text);
+  }
+  &--fixed {
+    background-color: var(--tsxScreen-Changelog-fixed-bg);
+    color: var(--tsxScreen-Changelog-fixed-text);
+  }
+  &--improved {
+    background-color: var(--tsxScreen-Changelog-improved-bg);
+    color: var(--tsxScreen-Changelog-improved-text);
+  }
+  &--deprecated {
+    background-color: var(--tsxScreen-Changelog-deprecated-bg);
+    color: var(--tsxScreen-Changelog-deprecated-text);
+  }
+  &--removed {
+    background-color: var(--tsxScreen-Changelog-removed-bg);
+    color: var(--tsxScreen-Changelog-removed-text);
+  }
+}

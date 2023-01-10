@@ -1,92 +1,13 @@
-<template>
-  <div class="contentScreenWrapper">
-    <div
-      class="screenOverlay fixed h-screen w-screen bg-trans-black-08 top-0 right-0 transition-opacity duration-300 ease-in-out"
-      :class="[isActiveBackground ? 'screenOverlay--open': '']"
-      @click="$emit('closeScreen')"
-    />
-    <transition name="slide">
-      <div
-        v-if="isOpenGuide"
-        ref="guide"
-        class="fixed top-0 right-0 overflow-hidden bg-white rounded-lg shadow-lg guideScreen transition-all duration-300 ease-in-out z-1m outerFullHeight z-[10001]"
-      >
-        <ChangelogScreen
-          v-if="type ==='changelog'"
-          :title="title"
-          @close-screen="closeScreen"
-        />
-        <div v-else class="flex flex-col mobileFullHeight">
-          <div
-            class="px-6 pt-6 mb-8"
-            :class="[
-              type === 'changelog' ? 'bg-blueGray-100': ''
-            ]"
-          >
-            <header class="flex justify-between relative">
-              <TSXHeaderKoalityAdvisor
-                v-if="type === 'koality'"
-                :title="title"
-              />
-              <TSXHeaderAdvisor
-                v-if="type === 'advisor'"
-                :title="title"
-              />
-              <TSXHeaderMarketing
-                v-if="type === 'marketing'"
-                :title="title"
-                :label="label"
-              />
-              <TSXHeaderChangelog
-                v-if="type ==='changelog'"
-                :title="title"
-                :changelog-link="sddd"
-              />
-              <div v-if="type === 'content'" />
-              <CloseScreen @click="closeScreen" />
-            </header>
-          </div>
-          <TSXContentScreenContent
-            v-if="isOpenGuide && contentId && !(contentUrl?.length || changelogContent?.length)"
-            :content-id="contentId"
-            :iframe-button-label="iframeButtonLabel"
-            :iframe-url="iframeUrl"
-            :language="language"
-            :type="type"
-            :partner-shop-url="partnerShopUrl"
-            :debug="debug"
-          />
-          <div v-if="contentUrl" class=" px-6 pb-6 flex-auto">
-            <iframe
-              :src="contentUrl"
-              class="w-full h-full"
-            />
-          </div>
-          <div v-if="changelogContent" v-html="changelogContent" />
-        </div>
-      </div>
-    </transition>
-  </div>
-</template>
-
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import mitt from 'mitt'
-import TSXContentScreenContent from './TSXContentScreenContent.vue'
-import {IContentConfig} from '@/types/general'
-import TSXHeaderAdvisor from '@/components/feature/TSXContentScreen/TSXHeaderAdvisor.vue'
-import TSXHeaderMarketing from '@/components/feature/TSXContentScreen/TSXHeaderMarketing.vue'
-import TSXHeaderKoalityAdvisor from '@/components/feature/TSXContentScreen/TSXHeaderKoalityAdvisor.vue'
-import TSXHeaderChangelog from '@/components/feature/TSXContentScreen/TSXHeaderChangelog.vue'
-import CloseScreen from '@/components/base/CloseScreen.vue'
-import ChangelogScreen from '@/components/feature/ChangelogScreen.vue'
-
-declare global {
-  interface Window {
-    mitt?: any
-  }
-}
+import { IContentConfig, TScreenTypes} from '@/types/general'
+import ScreenChangelog from '@/components/feature/ScreenChangelog/ScreenChangelog.vue'
+import ScreenAdvisor from '@/components/feature/ScreenAdvisor/ScreenAdvisor.vue'
+import ScreenMarketing from '@/components/feature/ScreenMarketing/ScreenMarketing.vue'
+import ScreenContent from '@/components/feature/ScreenContent/ScreenContent.vue'
+import { useTranslator } from '@/composables/translator'
 
 const props = defineProps({
   debug: {
@@ -103,13 +24,17 @@ const contentUrl = ref('')
 const language = ref('en')
 const title = ref<string|undefined>('')
 const label = ref<string|undefined>('')
-const type = ref<string|undefined>('content')
-const iframeButtonLabel = ref<string|null>(null)
-const iframeUrl = ref<string|null>(null)
-const changelogContent = ref<string|null>(null)
+const type = ref<TScreenTypes|undefined>('content')
+const iframeButtonLabel = ref<string>('')
+const iframeUrl = ref<string>('')
+const changelogUrl = ref<string>('')
+const changelogEndpoints = ref<string>('')
 const partnerShopUrl = ref<string|undefined>('')
+
 window.mitt = window.mitt || mitt()
 const body = document.querySelector('body')
+
+useTranslator().setLanguage(language.value)
 
 const openScreen = () => {
   body!.style.overflow = 'hidden'
@@ -131,9 +56,10 @@ const closeScreen = () => {
     language.value = 'en'
     type.value = 'advisor'
     partnerShopUrl.value = ''
-    iframeButtonLabel.value = null
-    iframeUrl.value = null
-    changelogContent.value = null
+    iframeButtonLabel.value = ''
+    iframeUrl.value = ''
+    changelogUrl.value = ''
+    changelogEndpoints.value = ''
   }, 300)
 }
 
@@ -145,14 +71,62 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   label.value = payload.label || 'pro'
   title.value = payload.title?.length ? payload.title : undefined
   partnerShopUrl.value = payload.partnerShopUrl?.length ? payload.partnerShopUrl : undefined
-  iframeUrl.value = payload.iframeUrl?.length ? payload.iframeUrl : null
-  iframeButtonLabel.value = payload.iframeButtonLabel?.length ? payload.iframeButtonLabel : null
-  changelogContent.value = payload.changelogContent?.length ? payload.changelogContent : null
+  iframeUrl.value = payload.iframeUrl?.length ? payload.iframeUrl : ''
+  iframeButtonLabel.value = payload.iframeButtonLabel?.length ? payload.iframeButtonLabel : ''
+  changelogUrl.value = payload.changelogUrl?.length ? payload.changelogUrl : ''
+  changelogEndpoints.value = payload.changelogEndpoints ? payload.changelogEndpoints : ''
   openScreen()
 })
 
 onClickOutside(guide, event => closeScreen())
+
 </script>
+
+<template>
+  <div class="contentScreenWrapper">
+    <div
+      class="screenOverlay fixed h-screen w-screen bg-trans-black-08 top-0 right-0 transition-opacity duration-300 ease-in-out"
+      :class="[isActiveBackground ? 'screenOverlay--open': '']"
+      @click="$emit('closeScreen')"
+    />
+    <transition name="slide">
+      <div
+        v-if="isOpenGuide"
+        ref="guide"
+        class="fixed top-0 right-0 overflow-hidden bg-white rounded-lg shadow-lg guideScreen transition-all duration-300 ease-in-out z-1m outerFullHeight z-[10001]"
+      >
+        <ScreenChangelog
+          v-if="type === 'changelog'"
+          :title="title"
+          :changelog-url="changelogUrl"
+          :changelog-endpoints="changelogEndpoints"
+          @close-screen="closeScreen"
+        />
+        <ScreenAdvisor
+          v-if="type && ['advisor', 'koality'].includes(type)"
+          :header-type="type"
+          :title="title"
+          :content-id="contentId"
+          :partner-shop-url="partnerShopUrl"
+          @close-screen="closeScreen"
+        />
+        <ScreenMarketing
+          v-if="type === 'marketing'"
+          :title="title"
+          :content-id="contentId"
+          :iframe-button-label="iframeButtonLabel"
+          :iframe-url="iframeUrl"
+          @close-screen="closeScreen"
+        />
+        <ScreenContent
+          v-if="type === 'content'"
+          :content-url="contentUrl"
+          @close-screen="closeScreen"
+        />
+      </div>
+    </transition>
+  </div>
+</template>
 
 <style lang="postcss">
 @import '../../../assets/output.css';

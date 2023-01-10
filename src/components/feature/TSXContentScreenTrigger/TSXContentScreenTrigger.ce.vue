@@ -6,37 +6,53 @@
 
 <script lang="ts" setup>
 import mitt from 'mitt'
+import { TScreenTypes } from '@/types/general'
 
-declare global {
-  interface Window {
-    mitt?: any;
+const props = defineProps({
+  contentId: {
+    type: String,
+    default: ''
+  },
+  contentUrl: {
+    type: String,
+    default: ''
+  },
+  language: {
+    type: String,
+    default: 'en'
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  type: {
+    type: String as () => TScreenTypes,
+    default: 'advisor'
+  },
+  label: {
+    type: String,
+    default: 'pro'
+  },
+  partnerShopUrl: {
+    type: String,
+    default: ''
+  },
+  iframeButtonLabel: {
+    type: String,
+    default: ''
+  },
+  iframeUrl: {
+    type: String,
+    default: ''
+  },
+  changelogUrl: {
+    type: String,
+    default: ''
+  },
+  changelogEndpoints: {
+    type: String,
+    default: ''
   }
-}
-
-export interface Props {
-  contentId?: string
-  contentUrl?: string
-  language?: string
-  title?: string
-  type?: 'advisor' | 'marketing' | 'content' | 'koality' | 'changelog' | undefined
-  label?: string
-  partnerShopUrl?: string
-  iframeButtonLabel?: string | null
-  iframeUrl?: string | null
-  changelogContent: string | null
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  contentId: '',
-  contentUrl: '',
-  title: '',
-  language: 'en',
-  type: 'advisor',
-  label: 'pro',
-  partnerShopUrl: '',
-  iframeButtonLabel: null,
-  iframeUrl: null,
-  changelogContent: null
 })
 
 window.mitt = window.mitt || mitt()
@@ -52,7 +68,8 @@ const trigger = () => {
     partnerShopUrl: props.partnerShopUrl,
     iframeButtonLabel: props.iframeButtonLabel,
     iframeUrl: props.iframeUrl,
-    changelogContent: props.changelogContent
+    changelogUrl: props.changelogUrl,
+    changelogEndpoints: props.changelogEndpoints
   })
 }
 

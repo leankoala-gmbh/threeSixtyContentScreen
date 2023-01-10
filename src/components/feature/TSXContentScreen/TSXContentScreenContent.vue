@@ -14,7 +14,7 @@
       </div>
     </div>
     <iframe
-      v-if="iframeIsOpen"
+      v-if="iframeIsOpen && iframeUrl"
       class="w-full h-full"
       :src="iframeUrl"
       frameborder="0"
@@ -49,11 +49,14 @@
 import {computed, ref} from 'vue'
 import GuideClient from '@webpros/koality-guide-client'
 import { marked } from 'marked'
+import {TScreenTypes} from '@/types/general'
+import {useTranslator} from '@/composables/translator'
 
-export interface Props {
+const { getLanguage } = useTranslator()
+
+interface Props {
   contentId: string
-  language?: string
-  type?: 'advisor' | 'koality' | 'marketing' | 'content'
+  type?: TScreenTypes
   partnerShopUrl?: string
   debug: boolean
   iframeButtonLabel?: string | null
@@ -61,7 +64,6 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  language: 'en',
   contentId: '',
   type: 'content',
   partnerShopUrl: '',
@@ -79,7 +81,7 @@ const client = new GuideClient('md')
 
 const fetchContent = async () => {
   try {
-    const guide = await client.getGuide(props.contentId, props.language)
+    const guide = await client.getGuide(props.contentId, getLanguage())
     const contentText = guide.getText()
     content.value = marked(contentText)
     const {buttons, cta} = guide.getMetaInformation()

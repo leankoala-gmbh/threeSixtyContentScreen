@@ -1,12 +1,33 @@
+export type TScreenTypes = 'advisor' | 'marketing' | 'content' | 'changelog' | 'koality' | undefined
+
+export interface IChangelogEndpoints {
+  getChangelogs: string
+  postChangelog: string
+}
+
 export interface IContentConfig {
   contentId?: string
   contentUrl?: string
   language?: string
-  type?: 'advisor' | 'marketing' | 'content' | 'changelog' | undefined
+  type?: TScreenTypes
   title?: string
   label?: string
   partnerShopUrl?: string
   iframeButtonLabel?: string | null
   iframeUrl?: string | null
-  changelogContent?: string | null
+  changelogUrl?: string
+  changelogEndpoints?: string
+}
+
+export interface IChangelogList {
+  id: string
+  title: string
+  body: string
+  url: string
+  type: string
+  createdAt: {
+    date: string
+    timezone_type: number
+    timezone: string
+  }
 }

@@ -1,0 +1,17 @@
+// Vitest Snapshot v1
+
+exports[`ChangelogEntry.vue > should match snapshot 1`] = `
+"<div>
+  <div class=\\"flex items-center gap-3 mb-3\\">
+    <div class=\\"rounded px-2 py-1 changelogColors--improved\\">Improved</div>
+    <div class=\\"text-slate-500\\">1/3/2023</div>
+  </div>
+  <h2 class=\\"text-xl font-medium mb-4\\">Second</h2>
+  <div>
+    <blockquote>
+      <p>📘 Second</p>
+    </blockquote>
+    <h1 id=\\"something\\">Something</h1>
+  </div>
+</div>"
+`;

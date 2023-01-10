@@ -1,8 +1,22 @@
+<script lang="ts" setup>
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import TSXContentScreenTrigger from './components/feature/TSXContentScreenTrigger/TSXContentScreenTrigger.ce.vue'
+import TSXContentScreen from './components/feature/TSXContentScreen/TSXContentScreen.ce.vue'
+
+const changelogEndpoints = JSON.stringify({
+  getChangelogs: 'https://stage.monitoring360.io/changelog/last',
+  postChangelog: 'https://stage.monitoring360.io/changelog/read/'
+})
+</script>
+
+
 <template>
   <div>
     <div class="mb-10">
       <TSXContentScreenTrigger
         content-id="html.deadlink.404"
+        title="Advisor"
       >
         Open Advisor
       </TSXContentScreenTrigger>
@@ -10,7 +24,7 @@
     <div class="mb-10">
       <TSXContentScreenTrigger
         content-id="monitoring.content.content"
-        type="kAdvisor"
+        type="koality"
         language="en"
       >
         Open kAdvisor info
@@ -19,10 +33,10 @@
     <div>
       <TSXContentScreenTrigger
         content-url="https://www.google.com"
-        type="marketing"
+        type="content"
         language="de"
       >
-        Open Marketing info
+        Open content info
       </TSXContentScreenTrigger>
     </div>
     <div>
@@ -37,11 +51,17 @@
       </TSXContentScreenTrigger>
     </div>
 
+    <div>
+      <TSXContentScreenTrigger
+        type="changelog"
+        changelog-url="https://www.koality.com/api/v1/changelog"
+        :changelog-endpoints="changelogEndpoints"
+      >
+        Open Changelog
+      </TSXContentScreenTrigger>
+    </div>
+
     <TSXContentScreen :debug="true" />
   </div>
 </template>
 
-<script lang="ts" setup>
-import TSXContentScreenTrigger from './components/feature/TSXContentScreenTrigger/TSXContentScreenTrigger.ce.vue'
-import TSXContentScreen from './components/feature/TSXContentScreen/TSXContentScreen.ce.vue'
-</script>

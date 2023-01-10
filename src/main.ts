@@ -12,9 +12,14 @@ const ContentScreenTrigger = defineCustomElement(TSXContentScreenTrigger)
 customElements.define('tsx-contentscreen', ContentScreen)
 customElements.define('tsx-contentscreen-trigger', ContentScreenTrigger)
 
+if (process.env.NODE_ENV === 'development') {
+
+  const {worker} = (await import(/* @vite-ignore */ './mocks/browser'))
+  worker?.start()
+
+  const app = createApp(App)
+  app.mount('#app')
+}
 
 
-const app = createApp(App)
-
-app.mount('#app')
 

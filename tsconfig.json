@@ -9,10 +9,10 @@
     "lib": ["esnext", "dom"],
     "types": [
       "vite/client",
-      "cypress",
+      "vitest",
       "@types/node",
-      "@vueuse/core",
-      "@types/marked"
+      "@types/marked",
+      "@types/web-bluetooth"
     ],
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
@@ -20,7 +20,6 @@
     "esModuleInterop": true,
     "importHelpers": true,
     "noEmit": true,
-    "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
     "paths": {
       "@/*": ["./src/*"],
       "~/*": ["./src/*"]
