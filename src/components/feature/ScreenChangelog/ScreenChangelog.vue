@@ -32,6 +32,7 @@ const getChangelog = async () => {
       withCredentials: true
     })
     changelogData.value = data
+    sendReadingChangelogs()
   } catch (error) {
     console.error(error)
   }
@@ -42,7 +43,12 @@ const markAsRead =  () => {
   axios.post(endpointData.postChangelog + changelogData.value[0].id, {
     withCredentials: true
   })
+}
 
+const sendReadingChangelogs = () => {
+  window.mitt.emit('tsxContentScreenEvents', {
+    action: 'readingChangelogs'
+  })
 }
 
 watchEffect(() => {
@@ -54,6 +60,7 @@ watchEffect(() => {
 onMounted(() => {
   if (endpointData?.getChangelogs) {
     getChangelog()
+
   } else {
     throw new Error('Changelog endpoints are not defined')
   }
