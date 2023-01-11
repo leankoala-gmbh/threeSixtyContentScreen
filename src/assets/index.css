@@ -142,6 +142,9 @@
   }
 
   &--changelog {
+    hr  {
+      @apply mb-4;
+    }
     img {
       @apply max-w-full block;
     }

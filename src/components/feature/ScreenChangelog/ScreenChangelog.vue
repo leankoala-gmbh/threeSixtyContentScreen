@@ -85,12 +85,13 @@ onMounted(() => {
         <CloseScreenButton @click="$emit('closeScreen')" />
       </div>
     </header>
-    <div class="overflow-y-auto h-full pb-4">
-      <main v-if="changelogData" class="px-6 flex flex-col gap-6 overflow-y-auto">
+    <div class="overflow-y-auto max-h-[calc(100%-130px)] pb-4">
+      <main v-if="changelogData" class="px-6 flex flex-col gap-3 overflow-y-auto divide-y">
         <ChangelogEntry
-          v-for="entry in changelogData"
+          v-for="(entry, index) in changelogData"
           :key="entry.id"
           :entry="entry"
+          :class="[{ 'pt-6': index !== 0 }]"
         />
       </main>
     </div>
