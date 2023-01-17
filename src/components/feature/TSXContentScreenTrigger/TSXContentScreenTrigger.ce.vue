@@ -1,12 +1,6 @@
-<template>
-  <div class="inline-block" @click="trigger">
-    <slot />
-  </div>
-</template>
-
 <script lang="ts" setup>
-import mitt from 'mitt'
 import { TScreenTypes } from '@/types/general'
+import mitt from 'mitt'
 
 const props = defineProps({
   contentId: {
@@ -74,3 +68,9 @@ const trigger = () => {
 }
 
 </script>
+
+<template>
+  <div class="inline-block" @click="trigger">
+    <slot />
+  </div>
+</template>

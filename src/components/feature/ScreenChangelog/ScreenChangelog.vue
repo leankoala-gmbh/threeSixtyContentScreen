@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import CloseScreenButton from '@/components/base/CloseScreenButton/CloseScreenButton.vue'
-import { useTranslator } from '@/composables/translator'
-import {IChangelogEndpoints, IChangelogList} from '@/types/general'
-import { onMounted, ref, watchEffect} from 'vue'
+import { IChangelogEndpoints, IChangelogList } from '@/types/general'
 import axios from 'axios'
-import ChangelogEntry from '@/components/feature/ChangelogEntry/ChangelogEntry.vue'
 
 const emit = defineEmits(['closeScreen'])
 

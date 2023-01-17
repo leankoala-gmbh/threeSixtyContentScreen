@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-import CloseScreenButton from '@/components/base/CloseScreenButton/CloseScreenButton.vue'
-import TSXContentScreenContent from '@/components/feature/TSXContentScreen/TSXContentScreenContent.vue'
+defineEmits(['closeScreen'])
 
-const emit = defineEmits(['closeScreen'])
-
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: 'Advisor'

@@ -1,13 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { onClickOutside } from '@vueuse/core'
+import { IContentConfig, TScreenTypes } from '@/types/general'
 import mitt from 'mitt'
-import { IContentConfig, TScreenTypes} from '@/types/general'
-import ScreenChangelog from '@/components/feature/ScreenChangelog/ScreenChangelog.vue'
-import ScreenAdvisor from '@/components/feature/ScreenAdvisor/ScreenAdvisor.vue'
-import ScreenMarketing from '@/components/feature/ScreenMarketing/ScreenMarketing.vue'
-import ScreenContent from '@/components/feature/ScreenContent/ScreenContent.vue'
-import { useTranslator } from '@/composables/translator'
 
 const props = defineProps({
   debug: {

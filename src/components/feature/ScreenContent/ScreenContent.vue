@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import CloseScreenButton from '@/components/base/CloseScreenButton/CloseScreenButton.vue'
-const emit = defineEmits(['closeScreen'])
+defineEmits(['closeScreen'])
 
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: 'You have discovered a pro feature'

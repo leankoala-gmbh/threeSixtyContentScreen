@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   env: {
+    'vue/setup-compiler-macros': true,
     browser: true,
     node: true
   },
@@ -9,7 +10,8 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
     '@vue/typescript',
-    'plugin:vue/base'
+    'plugin:vue/base',
+    './.eslintrc-auto-import.json'
   ],
   // plugins: [
   //   'vue',
@@ -19,6 +21,11 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     ecmaFeatures : {
       jsx : false
+    }
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {}
     }
   },
   rules: {
