@@ -58,10 +58,24 @@ window.mitt.emit('tsxContentScreenConfig', {
 interface MittPayload {
   contentId: string
   language?: string
-  type?: 'advisor' | 'marketing' | 'content'
+  type?: 'advisor' | 'marketing' | 'content' | 'changelog' | 'kAdvisor'
   title?: string
   label?: string
   partnerShopUrl?: string
+}
+```
+
+## Sending Events from the ContentScreen
+
+```js
+window.mitt.emit('tsxContentScreenEvents', {
+  action: 'iFrameOpen'
+})
+```
+
+```ts
+interface MITTSendPayload {
+  action: string
 }
 ```
 

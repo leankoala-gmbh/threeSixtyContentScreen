@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-y-auto px-6 pb-6 flex-auto">
-    <div class="markdown-body ">
+    <div v-if="!iframeIsOpen" class="markdown-body ">
       <div
         v-if="!apiError"
         class="richTextContent"
@@ -13,9 +13,15 @@
         {{ apiError }}
       </div>
     </div>
+    <iframe
+      v-if="iframeIsOpen && iframeUrl"
+      class="w-full h-full"
+      :src="iframeUrl"
+      frameborder="0"
+    />
   </div>
   <div
-    v-if="type === 'marketing' && meta.cta && fetchedURL && fetchedURL.length"
+    v-if="type === 'marketing' && !iframeUrl && meta.cta && fetchedURL && fetchedURL.length"
     class="p-4"
   >
     <a
@@ -29,42 +35,63 @@
       {{ meta.cta.subline }}
     </div>
   </div>
+  <div v-if="iframeUrl && !iframeIsOpen" class="p-4">
+    <a
+      class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
+      @click="triggerIframe"
+    >
+      {{ iframeButtonLabel || 'Open here' }}
+    </a>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import {computed, ref} from 'vue'
 import GuideClient from '@webpros/koality-guide-client'
 import { marked } from 'marked'
+import {TScreenTypes} from '@/types/general'
+import {useTranslator} from '@/composables/translator'
 
-export interface Props {
+const { getLanguage } = useTranslator()
+
+interface Props {
   contentId: string
-  language?: string
-  type?: 'advisor' | 'marketing' | 'content'
+  type?: TScreenTypes
   partnerShopUrl?: string
+  debug: boolean
+  iframeButtonLabel?: string | null
+  iframeUrl?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  language: 'en',
   contentId: '',
   type: 'content',
-  partnerShopUrl: ''
+  partnerShopUrl: '',
+  debug: false,
+  iframeButtonLabel: null,
+  iframeUrl: null
 })
 
 const content = ref<string>()
 const meta = ref<any>({})
 const apiError = ref<any>()
+const iframeIsOpen = ref(false)
 
 const client = new GuideClient('md')
 
 const fetchContent = async () => {
   try {
-    const guide = await client.getGuide(props.contentId, props.language)
+    const guide = await client.getGuide(props.contentId, getLanguage())
     const contentText = guide.getText()
     content.value = marked(contentText)
     const {buttons, cta} = guide.getMetaInformation()
     meta.value = {
       buttons: buttons || [],
-      cta: cta ? cta[0] : null
+      cta: cta?.[0] || null
+    }
+    if (props.debug) {
+      console.log('ContentScreen Meta', meta.value)
+      console.log('ContentScreen content', content.value)
     }
   } catch (err) {
     console.error(err)
@@ -73,11 +100,23 @@ const fetchContent = async () => {
 }
 
 const fetchedURL = computed(() => {
-  if (props.partnerShopUrl?.length && meta.value.cta.url === '[PARTNERSHOPURL]') {
-    return props.partnerShopUrl
-  }
-  return meta.value.cta.url
+  const url = props.partnerShopUrl?.length && meta.value.cta.partnerUrl
+    ? props.partnerShopUrl
+    : meta.value.cta.url
+  if (props.debug) console.log('ContentScreen fetchedURL', url)
+  return url
 })
 
 fetchContent()
+
+const triggerIframe = () => {
+  iframeIsOpen.value = true
+  window.mitt.emit('tsxContentScreenEvents', {
+    action: 'openIframe'
+  })
+}
+
+if (props.debug) {
+  console.log('ContentScreen Props', props)
+}
 </script>

@@ -2,8 +2,11 @@
 /public/
 /.idea/
 /tests/
+.github
+index.html
+.node_modules/
 .editorconfig
-.eslint.rc
+.eslintrc.js
 .gitignore
 package.json
 package-lock.json
@@ -15,3 +18,5 @@ vite.config.js
 webpack.config.js
 tailwind.config.js
 postcss.config.js
+mockServiceWorker.js
+.run

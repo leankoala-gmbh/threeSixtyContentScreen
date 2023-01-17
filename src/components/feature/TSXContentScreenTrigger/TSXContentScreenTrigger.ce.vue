@@ -1,36 +1,52 @@
-<template>
-  <div class="inline-block" @click="trigger">
-    <slot />
-  </div>
-</template>
-
 <script lang="ts" setup>
+import { TScreenTypes } from '@/types/general'
 import mitt from 'mitt'
 
-declare global {
-  interface Window {
-    mitt?: any;
+const props = defineProps({
+  contentId: {
+    type: String,
+    default: ''
+  },
+  contentUrl: {
+    type: String,
+    default: ''
+  },
+  language: {
+    type: String,
+    default: 'en'
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  type: {
+    type: String as () => TScreenTypes,
+    default: 'advisor'
+  },
+  label: {
+    type: String,
+    default: 'pro'
+  },
+  partnerShopUrl: {
+    type: String,
+    default: ''
+  },
+  iframeButtonLabel: {
+    type: String,
+    default: ''
+  },
+  iframeUrl: {
+    type: String,
+    default: ''
+  },
+  changelogUrl: {
+    type: String,
+    default: ''
+  },
+  changelogEndpoints: {
+    type: String,
+    default: ''
   }
-}
-
-export interface Props {
-  contentId?: string
-  contentUrl?: string
-  language?: string
-  title?: string
-  type?: 'advisor' | 'marketing' | 'content' | undefined
-  label?: string
-  partnerShopUrl?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  contentId: '',
-  contentUrl: '',
-  title: '',
-  language: 'en',
-  type: 'advisor',
-  label: 'pro',
-  partnerShopUrl: ''
 })
 
 window.mitt = window.mitt || mitt()
@@ -43,8 +59,18 @@ const trigger = () => {
     type: props.type,
     title: props.title,
     label: props.label,
-    partnerShopUrl: props.partnerShopUrl
+    partnerShopUrl: props.partnerShopUrl,
+    iframeButtonLabel: props.iframeButtonLabel,
+    iframeUrl: props.iframeUrl,
+    changelogUrl: props.changelogUrl,
+    changelogEndpoints: props.changelogEndpoints
   })
 }
 
 </script>
+
+<template>
+  <div class="inline-block" @click="trigger">
+    <slot />
+  </div>
+</template>
