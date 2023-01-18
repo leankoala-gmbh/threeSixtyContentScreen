@@ -1,6 +1,6 @@
 {
   "name": "@webpros/three-sixty-contentscreen",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "main": "dist/threeSixtyContentScreen.js",
   "description": "Webcomponent  for displaying api content",
   "author": "Sascha Fuchs (sascha.fuchs@webpros.com)",
@@ -27,10 +27,10 @@
     "prePublish": "npm run test:unit && npm run typecheck && npm run generateCss && npm run build"
   },
   "dependencies": {
-    "@vueuse/core": "^9.10.0",
+    "@vueuse/core": "^9.11.0",
     "@webpros/koality-guide-client": "^1.1.8",
     "axios": "^1.2.2",
-    "marked": "^4.2.5",
+    "marked": "^4.2.12",
     "mitt": "^3.0.0",
     "vue": "^3.2.45"
   },
@@ -49,6 +49,7 @@
     "cssnano": "^5.1.14",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
@@ -61,6 +62,8 @@
     "postcss-nested": "^6.0.0",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.4",
+    "unplugin-auto-import": "^0.12.1",
+    "unplugin-vue-components": "^0.22.12",
     "vite": "^2.9.15",
     "vitest": "^0.26.3",
     "vue-tsc": "^1.0.22",

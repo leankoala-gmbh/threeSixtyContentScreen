@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { IChangelogList } from '@/types/general'
 import { marked } from 'marked'
-import { useTranslator } from '@/composables/translator'
-import { computed } from 'vue'
 
 const props = defineProps({
   entry: {

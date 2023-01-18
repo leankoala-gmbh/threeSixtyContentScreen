@@ -1,5 +1,4 @@
 import locales from '@/locales/loader'
-import {ref} from 'vue'
 
 interface ILocales {
   [key: string]: {
