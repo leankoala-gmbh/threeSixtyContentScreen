@@ -1,56 +1,7 @@
-<template>
-  <div class="overflow-y-auto px-6 pb-6 flex-auto">
-    <div v-if="!iframeIsOpen" class="markdown-body ">
-      <div
-        v-if="!apiError"
-        class="richTextContent"
-        :class="[
-          `richTextContent--${type}`,
-        ]"
-        v-html="content"
-      />
-      <div v-if="apiError" class="text-error-high text-sm">
-        {{ apiError }}
-      </div>
-    </div>
-    <iframe
-      v-if="iframeIsOpen && iframeUrl"
-      class="w-full h-full"
-      :src="iframeUrl"
-      frameborder="0"
-    />
-  </div>
-  <div
-    v-if="type === 'marketing' && !iframeUrl && meta.cta && fetchedURL && fetchedURL.length"
-    class="p-4"
-  >
-    <a
-      class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
-      :href="fetchedURL"
-      :target="meta.cta.target || '_blank'"
-    >
-      {{ meta.cta.label || 'Click here' }}
-    </a>
-    <div v-if="meta.cta.subline" class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
-      {{ meta.cta.subline }}
-    </div>
-  </div>
-  <div v-if="iframeUrl && !iframeIsOpen" class="p-4">
-    <a
-      class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
-      @click="triggerIframe"
-    >
-      {{ iframeButtonLabel || 'Open here' }}
-    </a>
-  </div>
-</template>
-
 <script lang="ts" setup>
-import {computed, ref} from 'vue'
+import { TScreenTypes } from '@/types/general'
 import GuideClient from '@webpros/koality-guide-client'
 import { marked } from 'marked'
-import {TScreenTypes} from '@/types/general'
-import {useTranslator} from '@/composables/translator'
 
 const { getLanguage } = useTranslator()
 
@@ -120,3 +71,51 @@ if (props.debug) {
   console.log('ContentScreen Props', props)
 }
 </script>
+
+<template>
+  <div class="overflow-y-auto px-6 pb-6 flex-auto">
+    <div v-if="!iframeIsOpen" class="markdown-body ">
+      <div
+        v-if="!apiError"
+        class="richTextContent"
+        :class="[
+          `richTextContent--${type}`,
+        ]"
+        v-html="content"
+      />
+      <div v-if="apiError" class="text-error-high text-sm">
+        {{ apiError }}
+      </div>
+    </div>
+    <iframe
+      v-if="iframeIsOpen && iframeUrl"
+      class="w-full h-full"
+      :src="iframeUrl"
+      frameborder="0"
+    />
+  </div>
+  <div
+    v-if="type === 'marketing' && !iframeUrl && meta.cta && fetchedURL && fetchedURL.length"
+    class="p-4"
+  >
+    <a
+      class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
+      :href="fetchedURL"
+      :target="meta.cta.target || '_blank'"
+    >
+      {{ meta.cta.label || 'Click here' }}
+    </a>
+    <div v-if="meta.cta.subline" class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
+      {{ meta.cta.subline }}
+    </div>
+  </div>
+  <div v-if="iframeUrl && !iframeIsOpen" class="p-4">
+    <a
+      class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
+      @click="triggerIframe"
+    >
+      {{ iframeButtonLabel || 'Open here' }}
+    </a>
+  </div>
+</template>
+
