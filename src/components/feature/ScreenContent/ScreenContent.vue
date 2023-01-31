@@ -13,6 +13,10 @@ defineProps({
   contentUrl: {
     type: String,
     default: ''
+  },
+  brandType: {
+    type: String,
+    default: ''
   }
 })
 </script>
@@ -22,7 +26,17 @@ defineProps({
     <div
       class="px-6 pt-6 h-full"
     >
-      <header class="flex justify-end relative mb-8">
+      <header class="flex justify-between relative mb-8">
+        <div v-if="title" class="flex items-center">
+          <Brandheader
+            v-if="brandType"
+            :header-type="brandType"
+            class="pr-4"
+          />
+          <span class="font-medium text-2xl">
+            {{ title }}
+          </span>
+        </div>
         <CloseScreenButton @click="$emit('closeScreen')" />
       </header>
       <iframe

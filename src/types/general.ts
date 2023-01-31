@@ -1,5 +1,5 @@
 export type TScreenTypes = 'advisor' | 'marketing' | 'content' | 'changelog' | 'koality' | undefined
-
+export type LooseOnionString<T extends string> = T | Omit<string, T>
 export interface IChangelogEndpoints {
   getChangelogs: string
   postChangelog: string
@@ -17,6 +17,7 @@ export interface IContentConfig {
   iframeUrl?: string | null
   changelogUrl?: string
   changelogEndpoints?: string
+  brandType?: string
 }
 
 export interface IChangelogList {

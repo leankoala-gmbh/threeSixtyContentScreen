@@ -46,6 +46,10 @@ const props = defineProps({
   changelogEndpoints: {
     type: String,
     default: ''
+  },
+  brandType: {
+    type: String,
+    default: ''
   }
 })
 
@@ -63,7 +67,8 @@ const trigger = () => {
     iframeButtonLabel: props.iframeButtonLabel,
     iframeUrl: props.iframeUrl,
     changelogUrl: props.changelogUrl,
-    changelogEndpoints: props.changelogEndpoints
+    changelogEndpoints: props.changelogEndpoints,
+    brandType: props.brandType
   })
 }
 

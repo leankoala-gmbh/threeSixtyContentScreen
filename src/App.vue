@@ -35,6 +35,8 @@ const changelogEndpoints = JSON.stringify({
         content-url="https://www.google.com"
         type="content"
         language="de"
+        title="Content noch mal"
+        brand-type="advisor"
       >
         Open content info
       </TSXContentScreenTrigger>
@@ -60,7 +62,6 @@ const changelogEndpoints = JSON.stringify({
         Open Changelog
       </TSXContentScreenTrigger>
     </div>
-
     <TSXContentScreen :debug="true" />
   </div>
 </template>

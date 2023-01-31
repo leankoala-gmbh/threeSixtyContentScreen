@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Brandheader: typeof import('./src/components/base/BrandHeader/Brandheader.vue')['default']
     ChangelogEntry: typeof import('./src/components/feature/ChangelogEntry/ChangelogEntry.vue')['default']
     CloseScreenButton: typeof import('./src/components/base/CloseScreenButton/CloseScreenButton.vue')['default']
     ScreenAdvisor: typeof import('./src/components/feature/ScreenAdvisor/ScreenAdvisor.vue')['default']
