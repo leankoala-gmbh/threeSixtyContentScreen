@@ -49,6 +49,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'vue/multi-word-component-names': 'off',
     'no-multiple-empty-lines': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/no-unused-components': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'vue/multiline-html-element-content-newline': process.env.NODE_ENV === 'production' ? 'error' : 'warn',

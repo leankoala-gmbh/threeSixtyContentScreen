@@ -19,6 +19,7 @@ const title = ref<string|undefined>('')
 const label = ref<string|undefined>('')
 const type = ref<TScreenTypes|undefined>('content')
 const iframeButtonLabel = ref<string>('')
+const brandType = ref<string|undefined>('')
 const iframeUrl = ref<string>('')
 const changelogUrl = ref<string>('')
 const changelogEndpoints = ref<string>('')
@@ -53,10 +54,12 @@ const closeScreen = () => {
     iframeUrl.value = ''
     changelogUrl.value = ''
     changelogEndpoints.value = ''
+    brandType.value = ''
   }, 300)
 }
 
 window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
+  console.log('tsxContentScreenConfig', payload)
   contentUrl.value = payload.contentUrl || ''
   contentId.value = payload.contentId || ''
   language.value = payload.language || 'en'
@@ -68,6 +71,7 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   iframeButtonLabel.value = payload.iframeButtonLabel?.length ? payload.iframeButtonLabel : ''
   changelogUrl.value = payload.changelogUrl?.length ? payload.changelogUrl : ''
   changelogEndpoints.value = payload.changelogEndpoints ? payload.changelogEndpoints : ''
+  brandType.value = payload.brandType?.length ? payload.brandType : ''
   openScreen()
 })
 
@@ -114,6 +118,8 @@ onClickOutside(guide, event => closeScreen())
         <ScreenContent
           v-if="type === 'content'"
           :content-url="contentUrl"
+          :title="title"
+          :brand-type="brandType"
           @close-screen="closeScreen"
         />
       </div>
