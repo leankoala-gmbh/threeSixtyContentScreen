@@ -27,8 +27,11 @@ const getChangelog = async () => {
     const {data} = await axios.get(endpointData.getChangelogs, {
       withCredentials: true
     })
-    changelogData.value = data
-    sendReadingChangelogs()
+
+    if (!data.includes('<!doctype html>')) {
+      changelogData.value = data
+      sendReadingChangelogs()
+    }
   } catch (error) {
     console.error(error)
   }
