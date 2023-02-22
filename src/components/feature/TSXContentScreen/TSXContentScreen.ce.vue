@@ -17,7 +17,7 @@ const contentUrl = ref('')
 const language = ref('en')
 const title = ref<string|undefined>('')
 const label = ref<string|undefined>('')
-const type = ref<TScreenTypes|undefined>('content')
+const type = ref<TScreenTypes>('content')
 const iframeButtonLabel = ref<string>('')
 const brandType = ref<string|undefined>('')
 const iframeUrl = ref<string>('')
@@ -38,8 +38,17 @@ const openScreen = () => {
   }, 300)
 }
 
+const closeEvent = () => {
+  const screenType = ['advisor', 'koality'].includes(type.value) ? 'advisor' : type.value
+  window.mitt.emit('tsxContentScreenEvents', {
+    action: 'closeScreen',
+    screen: screenType
+  })
+}
+
 const closeScreen = () => {
   isOpenGuide.value = false
+  closeEvent()
   setTimeout(() => {
     isActiveBackground.value = false
     body!.style.overflow = ''
@@ -76,7 +85,6 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
 })
 
 onClickOutside(guide, event => closeScreen())
-
 </script>
 
 <template>
