@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineEmits(['closeScreen'])
+const emit = defineEmits(['closeScreen'])
 
 defineProps({
   title: {
@@ -19,6 +19,12 @@ defineProps({
     default: ''
   }
 })
+const closeScreen = () => {
+  window.mitt.emit('tsxContentScreenEvents', {
+    action: 'closeScreenIframe'
+  })
+  emit('closeScreen')
+}
 </script>
 
 <template>
@@ -37,7 +43,7 @@ defineProps({
             {{ title }}
           </span>
         </div>
-        <CloseScreenButton @click="$emit('closeScreen')" />
+        <CloseScreenButton @click="closeScreen" />
       </header>
       <iframe
         :src="contentUrl"
