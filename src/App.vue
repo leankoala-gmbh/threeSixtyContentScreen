@@ -8,6 +8,10 @@ const changelogEndpoints = JSON.stringify({
   getChangelogs: 'https://stage.monitoring360.io/changelog/last',
   postChangelog: 'https://stage.monitoring360.io/changelog/read/'
 })
+
+window.mitt.on('tsxContentScreenEvents', (event) => {
+  console.log('tsxContentScreenEvents', event)
+})
 </script>
 
 
