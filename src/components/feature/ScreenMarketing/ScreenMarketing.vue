@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const emit = defineEmits(['closeScreen'])
+defineEmits(['closeScreen'])
 
 defineProps({
   title: {
@@ -23,13 +23,6 @@ defineProps({
     default: ''
   }
 })
-
-const closeScreen = () => {
-  window.mitt.emit('tsxContentScreenEvents', {
-    action: 'closeScreenMarketing'
-  })
-  emit('closeScreen')
-}
 </script>
 
 <template>
@@ -44,7 +37,7 @@ const closeScreen = () => {
             {{ title?.length ? title : 'You have discovered a pro feature' }}
           </div>
         </div>
-        <CloseScreenButton @click="closeScreen" />
+        <CloseScreenButton @click="$emit('closeScreen')" />
       </header>
     </div>
     <TSXContentScreenContent
