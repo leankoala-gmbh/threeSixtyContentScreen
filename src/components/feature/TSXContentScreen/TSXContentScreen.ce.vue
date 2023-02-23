@@ -118,6 +118,7 @@ onClickOutside(guide, event => closeScreen())
         <ScreenMarketing
           v-if="type === 'marketing'"
           :title="title"
+          :partner-shop-url="partnerShopUrl"
           :content-id="contentId"
           :iframe-button-label="iframeButtonLabel"
           :iframe-url="iframeUrl"

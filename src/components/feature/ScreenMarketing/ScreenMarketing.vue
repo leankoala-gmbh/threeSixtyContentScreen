@@ -21,6 +21,10 @@ defineProps({
   iframeButtonLabel: {
     type: String,
     default: ''
+  },
+  partnerShopUrl: {
+    type: String,
+    default: ''
   }
 })
 </script>
@@ -43,6 +47,7 @@ defineProps({
     <TSXContentScreenContent
       :content-id="contentId"
       type="marketing"
+      :partner-shop-url="partnerShopUrl"
       :iframe-button-label="iframeButtonLabel"
       :iframe-url="iframeUrl"
     />
