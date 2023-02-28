@@ -9,9 +9,9 @@ const changelogEndpoints = JSON.stringify({
   postChangelog: 'https://stage.monitoring360.io/changelog/read/'
 })
 
-window.mitt.on('tsxContentScreenEvents', (event) => {
-  console.log('tsxContentScreenEvents', event)
-})
+// window.mitt.on('tsxContentScreenEvents', (event) => {
+//   console.log('tsxContentScreenEvents', event)
+// })
 </script>
 
 
@@ -29,7 +29,7 @@ window.mitt.on('tsxContentScreenEvents', (event) => {
       <TSXContentScreenTrigger
         content-id="monitoring.content.content"
         type="koality"
-        language="en"
+        language="de"
       >
         Open kAdvisor info
       </TSXContentScreenTrigger>
