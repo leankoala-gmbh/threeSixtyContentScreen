@@ -28,7 +28,10 @@ const partnerShopUrl = ref<string|undefined>('')
 window.mitt = window.mitt || mitt()
 const body = document.querySelector('body')
 
-useTranslator().setLanguage(language.value)
+
+
+const { setLanguage } = useTranslator()
+
 
 const openScreen = () => {
   body!.style.overflow = 'hidden'
@@ -82,6 +85,7 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   changelogEndpoints.value = payload.changelogEndpoints ? payload.changelogEndpoints : ''
   brandType.value = payload.brandType?.length ? payload.brandType : ''
   openScreen()
+  setLanguage(language.value)
 })
 
 onClickOutside(guide, event => closeScreen())

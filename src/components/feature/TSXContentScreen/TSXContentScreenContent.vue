@@ -5,6 +5,8 @@ import { marked } from 'marked'
 
 const { getLanguage } = useTranslator()
 
+console.log('getLanguage', getLanguage())
+
 interface Props {
   contentId: string
   type?: TScreenTypes
