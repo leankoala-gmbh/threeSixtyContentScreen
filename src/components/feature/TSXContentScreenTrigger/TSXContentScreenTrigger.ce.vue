@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { TScreenTypes } from '@/types/general'
+import { log } from 'console'
 import mitt from 'mitt'
 
 const props = defineProps({
@@ -50,11 +51,14 @@ const props = defineProps({
   brandType: {
     type: String,
     default: ''
+  },
+  isPartner: {
+    type: String,
+    default: 'false'
   }
 })
 
 window.mitt = window.mitt || mitt()
-
 const trigger = () => {
   window.mitt.emit('tsxContentScreenConfig', {
     contentUrl: props.contentUrl,
@@ -68,7 +72,8 @@ const trigger = () => {
     iframeUrl: props.iframeUrl,
     changelogUrl: props.changelogUrl,
     changelogEndpoints: props.changelogEndpoints,
-    brandType: props.brandType
+    brandType: props.brandType,
+    isPartner: props.isPartner.toLowerCase() === 'true'
   })
 }
 

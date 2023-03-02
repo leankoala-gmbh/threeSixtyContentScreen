@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { TScreenTypes } from '@/types/general'
+import { propsToAttrMap } from '@vue/shared';
 import GuideClient from '@webpros/koality-guide-client'
 import { marked } from 'marked'
 
-const { getLanguage } = useTranslator()
+const { getLanguage, translate } = useTranslator()
 
-console.log('getLanguage', getLanguage())
 
 interface Props {
   contentId: string
@@ -14,6 +14,7 @@ interface Props {
   debug: boolean
   iframeButtonLabel?: string | null
   iframeUrl?: string | null
+  isPartner: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -22,7 +23,8 @@ const props = withDefaults(defineProps<Props>(), {
   partnerShopUrl: '',
   debug: false,
   iframeButtonLabel: null,
-  iframeUrl: null
+  iframeUrl: null,
+  isPartner: false
 })
 
 const content = ref<string>()
@@ -42,10 +44,6 @@ const fetchContent = async () => {
       buttons: buttons || [],
       cta: cta?.[0] || null
     }
-    if (props.debug) {
-      console.log('ContentScreen Meta', meta.value)
-      console.log('ContentScreen content', content.value)
-    }
   } catch (err) {
     console.error(err)
     apiError.value = err
@@ -53,11 +51,12 @@ const fetchContent = async () => {
 }
 
 const fetchedURL = computed(() => {
-  const url = props.partnerShopUrl?.length && meta.value.cta.partnerUrl
+  if (props.isPartner){
+    return props.partnerShopUrl?.length ? props.partnerShopUrl: false
+  }
+  return props.partnerShopUrl?.length
     ? props.partnerShopUrl
     : meta.value.cta.url
-  if (props.debug) console.log('ContentScreen fetchedURL', url)
-  return url
 })
 
 fetchContent()
@@ -67,10 +66,6 @@ const triggerIframe = () => {
   window.mitt.emit('tsxContentScreenEvents', {
     action: 'openIframe'
   })
-}
-
-if (props.debug) {
-  console.log('ContentScreen Props', props)
 }
 </script>
 
@@ -97,16 +92,23 @@ if (props.debug) {
     />
   </div>
   <div
-    v-if="type === 'marketing' && !iframeUrl && meta.cta && fetchedURL && fetchedURL.length"
+    v-if="type === 'marketing' && !iframeUrl && meta.cta"
     class="p-4"
   >
     <a
+      v-if="!!fetchedURL"
       class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
       :href="fetchedURL"
       :target="meta.cta.target || '_blank'"
     >
       {{ meta.cta.label || 'Click here' }}
     </a>
+    <p
+      v-else
+      class='px-4 py-2 text-sm rounded border border-gray-200'
+      >
+      {{translate("alternativePartnerText")}}
+    </p>
     <div v-if="meta.cta.subline" class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
       {{ meta.cta.subline }}
     </div>

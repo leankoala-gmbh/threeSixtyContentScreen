@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineEmits(['closeScreen'])
 
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     default: 'Advisor'
@@ -17,8 +17,13 @@ defineProps({
   headerType: {
     type: String,
     default: 'advisor'
+  },
+  isPartner: {
+    type: Boolean,
+    default: false
   }
 })
+
 </script>
 
 <template>
@@ -36,6 +41,7 @@ defineProps({
     </div>
     <TSXContentScreenContent
       :content-id="contentId"
+      :is-partner="isPartner"
       type="advisor"
       :partner-shop-url="partnerShopUrl"
     />

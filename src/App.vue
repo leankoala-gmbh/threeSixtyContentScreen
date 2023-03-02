@@ -34,6 +34,16 @@ const changelogEndpoints = JSON.stringify({
         Open kAdvisor info
       </TSXContentScreenTrigger>
     </div>
+    <div class="mb-10">
+      <TSXContentScreenTrigger
+        content-id="monitoring.content.content"
+        type="koality"
+        language="de"
+        is-partner="true"
+      >
+        Open kAdvisor info
+      </TSXContentScreenTrigger>
+    </div>
     <div>
       <TSXContentScreenTrigger
         content-url="https://www.google.com"
@@ -54,6 +64,26 @@ const changelogEndpoints = JSON.stringify({
         iframe-url="https://www.google.com"
       >
         Open Iframe Content
+      </TSXContentScreenTrigger>
+    </div>
+    <div>
+      <TSXContentScreenTrigger
+        content-id="customer.360.pro.fsc"
+        type="marketing"
+        language="de"
+        is-partner="true"
+      >
+        Open Iframe Content Marketing TRUE
+      </TSXContentScreenTrigger>
+    </div>
+    <div>
+      <TSXContentScreenTrigger
+        content-id="customer.360.pro.fsc"
+        type="marketing"
+        language="de"
+        is-partner="false"
+      >
+        Open Iframe Content Marketing FALSE
       </TSXContentScreenTrigger>
     </div>
 
