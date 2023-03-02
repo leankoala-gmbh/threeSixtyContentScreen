@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { IContentConfig, TScreenTypes } from '@/types/general'
+import { isParenthesizedExpression } from '@babel/types'
 import mitt from 'mitt'
 
 const props = defineProps({
@@ -24,6 +25,7 @@ const iframeUrl = ref<string>('')
 const changelogUrl = ref<string>('')
 const changelogEndpoints = ref<string>('')
 const partnerShopUrl = ref<string|undefined>('')
+const isPartner = ref(false)
 
 window.mitt = window.mitt || mitt()
 const body = document.querySelector('body')
@@ -67,11 +69,11 @@ const closeScreen = () => {
     changelogUrl.value = ''
     changelogEndpoints.value = ''
     brandType.value = ''
+    isPartner.value = false
   }, 300)
 }
 
 window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
-  console.log('tsxContentScreenConfig', payload)
   contentUrl.value = payload.contentUrl || ''
   contentId.value = payload.contentId || ''
   language.value = payload.language || 'en'
@@ -84,6 +86,7 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   changelogUrl.value = payload.changelogUrl?.length ? payload.changelogUrl : ''
   changelogEndpoints.value = payload.changelogEndpoints ? payload.changelogEndpoints : ''
   brandType.value = payload.brandType?.length ? payload.brandType : ''
+  isPartner.value = payload.isPartner || false
   openScreen()
   setLanguage(language.value)
 })
@@ -115,6 +118,7 @@ onClickOutside(guide, event => closeScreen())
           v-if="type && ['advisor', 'koality'].includes(type)"
           :header-type="type"
           :title="title"
+          :is-partner="isPartner"
           :content-id="contentId"
           :partner-shop-url="partnerShopUrl"
           @close-screen="closeScreen"
@@ -122,6 +126,7 @@ onClickOutside(guide, event => closeScreen())
         <ScreenMarketing
           v-if="type === 'marketing'"
           :title="title"
+          :is-partner="isPartner"
           :partner-shop-url="partnerShopUrl"
           :content-id="contentId"
           :iframe-button-label="iframeButtonLabel"
