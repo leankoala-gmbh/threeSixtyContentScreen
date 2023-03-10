@@ -30,10 +30,7 @@ const isPartner = ref(false)
 window.mitt = window.mitt || mitt()
 const body = document.querySelector('body')
 
-
-
 const { setLanguage } = useTranslator()
-
 
 const openScreen = () => {
   body!.style.overflow = 'hidden'
@@ -74,6 +71,7 @@ const closeScreen = () => {
 }
 
 window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
+  console.log('payload', payload)
   contentUrl.value = payload.contentUrl || ''
   contentId.value = payload.contentId || ''
   language.value = payload.language || 'en'
@@ -126,6 +124,7 @@ onClickOutside(guide, event => closeScreen())
         <ScreenMarketing
           v-if="type === 'marketing'"
           :title="title"
+          :label="label"
           :is-partner="isPartner"
           :partner-shop-url="partnerShopUrl"
           :content-id="contentId"
