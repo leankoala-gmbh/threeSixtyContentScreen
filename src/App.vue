@@ -59,6 +59,7 @@ const changelogEndpoints = JSON.stringify({
       <TSXContentScreenTrigger
         content-id="_demo.iframe.test"
         type="marketing"
+        label="viktor"
         language="de"
         iframe-button-label="Open in iframe"
         iframe-url="https://www.google.com"
