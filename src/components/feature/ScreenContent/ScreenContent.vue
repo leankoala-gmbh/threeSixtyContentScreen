@@ -23,9 +23,7 @@ defineProps({
 
 <template>
   <div class="flex flex-col mobileFullHeight">
-    <div
-      class="px-6 pt-6 h-full"
-    >
+    <div class="px-6 pt-6 h-full">
       <header class="flex justify-between relative mb-8">
         <div v-if="title" class="flex items-center">
           <Brandheader
@@ -41,7 +39,7 @@ defineProps({
       </header>
       <iframe
         :src="contentUrl"
-        class="w-full h-full"
+        class="w-full h-[calc(100%-120px)]"
       />
     </div>
   </div>
