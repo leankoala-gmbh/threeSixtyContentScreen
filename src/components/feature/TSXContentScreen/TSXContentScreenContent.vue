@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { TScreenTypes } from '@/types/general'
-import { propsToAttrMap } from '@vue/shared';
+import { propsToAttrMap } from '@vue/shared'
 import GuideClient from '@webpros/koality-guide-client'
 import { marked } from 'marked'
 
@@ -105,9 +105,9 @@ const triggerIframe = () => {
     </a>
     <p
       v-else
-      class='px-4 py-2 text-sm rounded border border-gray-200'
-      >
-      {{translate("alternativePartnerText")}}
+      class="px-4 py-2 text-sm rounded border border-gray-200"
+    >
+      {{ translate("alternativePartnerText") }}
     </p>
     <div v-if="meta.cta.subline" class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
       {{ meta.cta.subline }}
@@ -118,7 +118,7 @@ const triggerIframe = () => {
       class="inline-flex items-center justify-center transition-all duration-300 cursor-pointer border-0 focus:outline-none p-3 w-full rounded mb-3 text-white bg-marketing hover:bg-marketing-hover"
       @click="triggerIframe"
     >
-      {{ iframeButtonLabel || 'Open here' }}
+      {{ iframeButtonLabel || meta.cta.label || 'Open here' }}
     </a>
   </div>
 </template>
