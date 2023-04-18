@@ -43,8 +43,9 @@ const openScreen = () => {
 const closeEvent = () => {
   const screenType = ['advisor', 'koality'].includes(type.value) ? 'advisor' : type.value
   console.log('contentURL', contentUrl.value)
+  console.log('iframURL', iframeUrl.value)
 
-  if (contentUrl.value && contentUrl.value.includes('store.plesk.com')){
+  if (contentUrl.value && (contentUrl.value.includes('store.plesk.com')|| iframeUrl.value.includes('store.plesk.com'))){
     window.mitt.emit('tsxContentScreenEvents', {
       action: 'closeStoreIframe',
       screen: screenType
