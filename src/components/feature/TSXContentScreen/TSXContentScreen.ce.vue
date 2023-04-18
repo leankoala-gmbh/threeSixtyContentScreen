@@ -42,11 +42,21 @@ const openScreen = () => {
 
 const closeEvent = () => {
   const screenType = ['advisor', 'koality'].includes(type.value) ? 'advisor' : type.value
+  if (contentUrl && contentUrl.value.includes('store.plesk.com')){
+    window.mitt.emit('tsxContentScreenEvents', {
+      action: 'closeStoreIframe',
+      screen: screenType
+    })
+    return
+  }
   window.mitt.emit('tsxContentScreenEvents', {
     action: 'closeScreen',
     screen: screenType
   })
 }
+
+
+
 
 const closeScreen = () => {
   isOpenGuide.value = false
@@ -88,6 +98,7 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   openScreen()
   setLanguage(language.value)
 })
+
 
 onClickOutside(guide, event => closeScreen())
 </script>
