@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { IContentConfig, TScreenTypes } from '@/types/general'
-import { isParenthesizedExpression } from '@babel/types'
+import {debugEcho}  from '~/composables/debugTools'
 import mitt from 'mitt'
 
 const props = defineProps({
@@ -43,11 +43,25 @@ const openScreen = () => {
 
 const closeEvent = () => {
   const screenType = ['advisor', 'koality'].includes(type.value) ? 'advisor' : type.value
+  debugEcho('contentURL', contentUrl.value)
+  debugEcho('iframeURL', iframeUrl.value)
+  const isCbIframe = contentUrl.value && (contentUrl.value.includes('store.plesk.com')|| iframeUrl.value.includes('store.plesk.com'))
+  debugEcho('isCbIframe', isCbIframe)
+  if (isCbIframe){
+    window.mitt.emit('tsxContentScreenEvents', {
+      action: 'closeStoreIframe',
+      screen: screenType
+    })
+    return
+  }
   window.mitt.emit('tsxContentScreenEvents', {
     action: 'closeScreen',
     screen: screenType
   })
 }
+
+
+
 
 const closeScreen = () => {
   isOpenGuide.value = false
@@ -73,7 +87,7 @@ const closeScreen = () => {
 }
 
 window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
-  console.log('payload', payload)
+  debugEcho('payload', payload)
   contentUrl.value = payload.contentUrl || ''
   contentId.value = payload.contentId || ''
   language.value = payload.language || 'en'
@@ -91,6 +105,7 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   openScreen()
   setLanguage(language.value)
 })
+
 
 onClickOutside(guide, event => closeScreen())
 </script>
