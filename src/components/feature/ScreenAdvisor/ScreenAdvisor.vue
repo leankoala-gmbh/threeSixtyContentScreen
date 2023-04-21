@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { a } from 'msw/lib/SetupApi-b2f0e5ac'
+
 defineEmits(['closeScreen'])
 
 const props = defineProps({
@@ -21,6 +23,10 @@ const props = defineProps({
   isPartner: {
     type: Boolean,
     default: false
+  },
+  brandName: {
+    type: String,
+    default: ''
   }
 })
 
@@ -32,9 +38,11 @@ const props = defineProps({
       <header class="flex justify-between relative">
         <div class="flex items-center">
           <Brandheader
+            v-if="!isPartner"
             :header-type="headerType"
+            class="pr-4"
           />
-          <span class="font-medium text-2xl pl-4">{{ title.length ? title : 'Advisor' }}</span>
+          <span class="font-medium text-2xl">{{ title.length ? title : 'Advisor' }}</span>
         </div>
         <CloseScreenButton @click="$emit('closeScreen')" />
       </header>
@@ -44,6 +52,7 @@ const props = defineProps({
       :is-partner="isPartner"
       type="advisor"
       :partner-shop-url="partnerShopUrl"
+      :brand-name="brandName"
     />
   </div>
 </template>

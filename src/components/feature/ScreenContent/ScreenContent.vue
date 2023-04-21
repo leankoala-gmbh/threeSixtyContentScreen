@@ -17,6 +17,10 @@ defineProps({
   brandType: {
     type: String,
     default: ''
+  },
+  isPartner: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -27,7 +31,7 @@ defineProps({
       <header class="flex justify-between relative mb-8">
         <div v-if="title" class="flex items-center">
           <Brandheader
-            v-if="brandType"
+            v-if="brandType && !isPartner"
             :header-type="brandType"
             class="pr-4"
           />

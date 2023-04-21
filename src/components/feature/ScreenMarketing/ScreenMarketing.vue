@@ -29,6 +29,10 @@ const props = defineProps({
   isPartner : {
     type: Boolean,
     default: false
+  },
+  brandName: {
+    type: String,
+    default: ''
   }
 })
 
@@ -57,6 +61,7 @@ const props = defineProps({
       :partner-shop-url="partnerShopUrl"
       :iframe-button-label="iframeButtonLabel"
       :iframe-url="iframeUrl"
+      :brand-name="brandName"
     />
   </div>
 </template>
