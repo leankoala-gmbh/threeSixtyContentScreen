@@ -26,6 +26,7 @@ const changelogUrl = ref<string>('')
 const changelogEndpoints = ref<string>('')
 const partnerShopUrl = ref<string|undefined>('')
 const isPartner = ref(false)
+const brandName = ref('360 Monitoring')
 
 window.mitt = window.mitt || mitt()
 const body = document.querySelector('body')
@@ -67,6 +68,7 @@ const closeScreen = () => {
     changelogEndpoints.value = ''
     brandType.value = ''
     isPartner.value = false
+    brandName.value = '360 Monitoring'
   }, 300)
 }
 
@@ -85,6 +87,7 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
   changelogEndpoints.value = payload.changelogEndpoints ? payload.changelogEndpoints : ''
   brandType.value = payload.brandType?.length ? payload.brandType : ''
   isPartner.value = payload.isPartner || false
+  brandName.value = payload.brandName?.length ? payload.brandName : '360 Monitoring'
   openScreen()
   setLanguage(language.value)
 })
@@ -119,6 +122,7 @@ onClickOutside(guide, event => closeScreen())
           :is-partner="isPartner"
           :content-id="contentId"
           :partner-shop-url="partnerShopUrl"
+          :brand-name="brandName"
           @close-screen="closeScreen"
         />
         <ScreenMarketing
@@ -130,11 +134,13 @@ onClickOutside(guide, event => closeScreen())
           :content-id="contentId"
           :iframe-button-label="iframeButtonLabel"
           :iframe-url="iframeUrl"
+          :brand-name="brandName"
           @close-screen="closeScreen"
         />
         <ScreenContent
           v-if="type === 'content'"
           :content-url="contentUrl"
+          :is-partner="isPartner"
           :title="title"
           :brand-type="brandType"
           @close-screen="closeScreen"

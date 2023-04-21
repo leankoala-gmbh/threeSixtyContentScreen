@@ -19,6 +19,7 @@ export interface IContentConfig {
   changelogEndpoints?: string
   brandType?: string
   isPartner?: boolean
+  brandName?: string
 }
 
 export interface IChangelogList {

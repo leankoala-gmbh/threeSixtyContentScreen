@@ -69,7 +69,7 @@ const changelogEndpoints = JSON.stringify({
     </div>
     <div>
       <TSXContentScreenTrigger
-        content-id="customer.360.pro.fsc"
+        content-id="customer.360.enterprise.fsc"
         type="marketing"
         language="de"
         is-partner="true"

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { TScreenTypes } from '@/types/general'
-import { propsToAttrMap } from '@vue/shared';
 import GuideClient from '@webpros/koality-guide-client'
 import { marked } from 'marked'
 
@@ -15,6 +14,7 @@ interface Props {
   iframeButtonLabel?: string | null
   iframeUrl?: string | null
   isPartner: boolean
+  brandName?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -24,7 +24,8 @@ const props = withDefaults(defineProps<Props>(), {
   debug: false,
   iframeButtonLabel: null,
   iframeUrl: null,
-  isPartner: false
+  isPartner: false,
+  brandName: '360 Monitoring'
 })
 
 const content = ref<string>()
@@ -37,13 +38,18 @@ const client = new GuideClient('md')
 const fetchContent = async () => {
   try {
     const guide = await client.getGuide(props.contentId, getLanguage())
-    const contentText = guide.getText()
+    const contentText = guide.getText().replaceAll('360 Monitoring', props.brandName)
     content.value = marked(contentText)
     const {buttons, cta} = guide.getMetaInformation()
+    const ctaNew = cta?.[0] || null
+    if (ctaNew) {
+      ctaNew.label = ctaNew.label.replaceAll('360 Monitoring', props.brandName)
+    }
     meta.value = {
       buttons: buttons || [],
-      cta: cta?.[0] || null
+      cta: ctaNew ?? null
     }
+    console.log('meta', meta.value)
   } catch (err) {
     console.error(err)
     apiError.value = err
@@ -105,9 +111,9 @@ const triggerIframe = () => {
     </a>
     <p
       v-else
-      class='px-4 py-2 text-sm rounded border border-gray-200'
-      >
-      {{translate("alternativePartnerText")}}
+      class="px-4 py-2 text-sm rounded border border-gray-200"
+    >
+      {{ translate('alternativePartnerText') }}
     </p>
     <div v-if="meta.cta.subline" class="rounded border border-gray-200 py-2 px-3 text-center font-medium text-content-body">
       {{ meta.cta.subline }}

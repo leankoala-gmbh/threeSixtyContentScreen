@@ -55,6 +55,10 @@ const props = defineProps({
   isPartner: {
     type: String,
     default: 'false'
+  },
+  brandName: {
+    type: String,
+    default: '360 Monitoring'
   }
 })
 
@@ -73,7 +77,8 @@ const trigger = () => {
     changelogUrl: props.changelogUrl,
     changelogEndpoints: props.changelogEndpoints,
     brandType: props.brandType,
-    isPartner: props.isPartner.toLowerCase() === 'true'
+    isPartner: props.isPartner.toLowerCase() === 'true',
+    brandName: props.brandName
   })
 }
 
