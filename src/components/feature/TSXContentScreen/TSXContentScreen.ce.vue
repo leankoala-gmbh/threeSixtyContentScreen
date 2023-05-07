@@ -113,7 +113,7 @@ onClickOutside(guide, event => closeScreen())
 <template>
   <div class="contentScreenWrapper">
     <div
-      class="screenOverlay fixed h-screen w-screen bg-trans-black-08 top-0 right-0 transition-opacity duration-300 ease-in-out"
+      class="screenOverlay fixed h-screen w-screen bg-trans-black-08 top-0 right-0 transition-opacity duration-300 ease-in-out backdrop-filter backdrop-blur-sm"
       :class="[isActiveBackground ? 'screenOverlay--open': '']"
       @click="$emit('closeScreen')"
     />

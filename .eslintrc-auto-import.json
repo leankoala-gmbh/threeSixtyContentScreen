@@ -20,6 +20,7 @@
     "customRef": true,
     "debouncedRef": true,
     "debouncedWatch": true,
+    "debugEcho": true,
     "defineAsyncComponent": true,
     "defineComponent": true,
     "eagerComputed": true,
