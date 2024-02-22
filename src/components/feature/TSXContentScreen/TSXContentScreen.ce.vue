@@ -2,6 +2,7 @@
 import { IContentConfig, TScreenTypes } from '@/types/general'
 import {debugEcho}  from '~/composables/debugTools'
 import mitt from 'mitt'
+import { onKeyStroke } from '@vueuse/core'
 
 const props = defineProps({
   debug: {
@@ -61,8 +62,6 @@ const closeEvent = () => {
 }
 
 
-
-
 const closeScreen = () => {
   isOpenGuide.value = false
   closeEvent()
@@ -108,6 +107,11 @@ window.mitt.on('tsxContentScreenConfig', (payload: IContentConfig) => {
 
 
 onClickOutside(guide, event => closeScreen())
+
+onKeyStroke('Escape', (e) => {
+  closeScreen()
+})
+
 </script>
 
 <template>
